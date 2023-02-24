@@ -1,0 +1,36 @@
+1.
+
+
+2.  O(1): Accessing an element in an array using an index.
+    O(log n): Binary search in a sorted array.
+    O(n): Linear search in an array.
+    O(n log n): Merge sort.
+    O(n^2): Bubble sort.
+
+3.  
+
+4.  1. Iterate through the list of stock prices, keeping track of the minimum price seen so far and the maximum profit seen so far.
+    2. At each step, update the minimum price seen so far to the current price if it is lower than the current minimum.
+    3. Also at each step, update the maximum profit seen so far to the difference between the current price and the current minimum price, if it is higher than the current maximum profit.
+    4. Return the maximum profit seen so far as the result.
+
+    pseudocode:
+
+    def maximum_profit(prices):
+    min_price = float('inf')
+    max_profit = 0
+    for price in prices:
+        min_price = min(min_price, price)
+        max_profit = max(max_profit, price - min_price)
+    return max_profit
+
+5.  1. Check that the two strings are of the same length. If they are not, they cannot be permutations of each other.
+    2. Sort the characters in both strings.
+    3. Compare the sorted strings. If they are the same, then the original strings are permutations of each other. If they are not, then the original strings are not permutations of each other.
+
+    function isPermutation(a, b):
+    if len(a) != len(b):
+        return false
+    a_sorted = sort(a)
+    b_sorted = sort(b)
+    return a_sorted == b_sorted
