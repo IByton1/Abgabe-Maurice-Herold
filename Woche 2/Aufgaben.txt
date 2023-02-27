@@ -1,0 +1,34 @@
+1.  Bit-Operationen können nützlich sein, um mit Mengen zu arbeiten, da sie es ermöglichen, Mengenoperationen mit Bit-Operationen auszuführen, was schneller sein kann als die Verwendung von built-in set operations.
+
+
+2.  Ein arithmetic right shift bahält das Vorzeichen der Zahl, indem er die linken Bits mit Kopien des ursprünglichen linken Bits füllt. Das bedeutet, dass, wenn die Zahl negativ ist, das linkste Bit nach dem Verschieben immer 1 sein wird und die Zahl negativ bleibt.
+
+    Ein logical right shift hingegen füll die linken Bits unabhängig vom Vorzeichen der Zahl mit Nullen auf.
+
+
+3.  Der Ausdruck n & (n-1) führt eine bitweise UND-Operation zwischen n und n-1 durch. Wenn n eine Zweierpotenz ist, ist n eine einzelne 1-Bit gefolgt von null oder mehr 0-Bits. Zum Beispiel ist 8 (1000 in binär) eine Zweierpotenz.
+    Wenn n-1 berechnet wird, wird das rechteste 1-Bit zu 0 umgedreht und alle 0-Bits rechts werden zu 1. Zum Beispiel ist 7 (0111 in binär) gleich 8-1.
+    Wenn n und n-1 miteinander verknüpft werden, ist das Ergebnis 0. Zum Beispiel ist 8 & 7 gleich 1000 & 0111, was 0000 ist.
+
+
+4.  Initialisiere einen Zähler auf 0.
+    Erstelle eine Maske mit dem Wert 1 und verschiebe sie um 0, um zu beginnen.
+    Verwende eine Schleife, um über die Bits der Ganzzahl zu iterieren.
+    In jeder Iteration überprüfe, ob das UND der Ganzzahl und der Maske größer als 0 ist. Wenn ja, erhöhe den Zähler.
+    Verschiebe die Maske in jeder Iteration um 1 nach links.
+    Fahre mit der Schleife fort, bis die Maske größer als die Ganzzahl ist.
+    Der endgültige Wert des Zählers ist die Anzahl der Bits, die auf 1 gesetzt sind.
+
+5.  function reverse_bits(n: integer) -> integer:
+        reversed_n = 0
+        bit_pos = 0
+        while n > 0 do
+            bit = n bit-wise AND 1
+            reversed_n = (reversed_n bit-wise left-shift 1) bit-wise OR bit
+            n = n bit-wise right-shift 1
+            bit_pos = bit_pos + 1
+        end while
+        return reversed_n
+    end function
+
+6. 

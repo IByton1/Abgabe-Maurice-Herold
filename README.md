@@ -1,0 +1,8 @@
+todo:
+my_hash
+hardcode_two_regexes
+min_staps_beyond_last_index
+is_binary_search_tree
+
+Woche5 
+woche6

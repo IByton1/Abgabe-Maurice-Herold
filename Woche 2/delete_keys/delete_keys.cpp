@@ -21,7 +21,9 @@ using namespace std;
 inline size_t delete_keys(vector<int> &v, const int key) {
   size_t i = 0;
   size_t j = 0;
+  // Loop through the vector.
   while (i < v.size()) {
+    // If the current element is not equal to the key, update the vector.
     if (v[i] != key) {
       v[j] = v[i];
       ++j;

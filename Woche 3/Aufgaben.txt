@@ -1,0 +1,20 @@
+1.  1. Variable result mit 0 Initialisieren
+    2. Durchlaufe mit einer Schleife alle Buchstaben des Strings
+    3. Für jeden Buchstaben wird result mit 10 multipliziert und der wert des Buchstabens addirt
+    4. Am ende der schleife hat man sein ergebnis in result
+
+2.  1. Leere zeischenfolge names Result
+    2. Schleife die solnage läuft wie die Zahl größer als 0 ist
+    3. Zahl modulo 10 rechnen und rest mit ASCII-Wert am anfang von result einfügen
+    4. Wenn die schleife fertig ist und result lehr ASCII-Wer für 0 einfügen
+    5. In result steht das ergebnis
+
+3.  ASCII ist eine 7-Bit-Codierung, die 128 Zeichen enthält, während Extended ASCII eine 8-Bit-Codierung ist, die bis zu 256 Zeichen enthält.
+    UTF-8 ist eine variable Codierung, die für die Darstellung von Unicode-Zeichen verwendet wird und einzelne Byte-Folgen für ASCII-Zeichen und mehrere Byte-Folgen für nicht-ASCII-Zeichen verwendet.
+    UTF-16 ist auch eine variable Codierung, die ein oder zwei 16-Bit-Wörter verwendet, um alle Zeichen zu speichern.
+    UTF-32 ist eine feste Codierung, die genau 4 Bytes für alle Zeichen verwendet, was es effektiv für schnelle Verarbeitung und einfache Indexierung macht
+
+4.  hardcoded regex expressions sind oft schneller da si bereits bei der Kompilierung festgelegt werden und somit analyse und Kompilierungszeiten entfallen.
+    Außerdem können sie statisch optimiert werden was leistung einsparen kann.
+
+5.  

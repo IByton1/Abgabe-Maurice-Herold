@@ -1,0 +1,41 @@
+1.
+
+
+2.  O(1): Zugriff auf ein Element in einem Array mit einem Index.
+    O(log n): Binäre Suche in einem sortierten Array.
+    O(n): Lineare Suche in einem Array.
+    O(n log n): Merge-Sort.
+    O(n^2): Bubble-Sort.
+
+3.  1. Das Problem verstehen: Sicher sein, dass man das Problem verstanden hat wichtige sachen notirern und wenn nötig nachfragen.
+    2. Ein Plan entwickeln: Zuerst überlegen wie man an das Problem ran geht und welcher ansatz der besste ist.
+    3. Den code Implementieren: Den Code schritt für schritt für das Problem schreiben um sicher zusein, dass die Zwischenergebnise richtig sind.
+    4. Den Code Testen: Teste ob dein Code richtig Funktioniert und ändere dinge die nicht gehen.
+    5. Optimiren: Optimiere deine Lösung soweit es geht (unnötige schleifen, bessere Algorithmen)
+    6. Dokumentiere dein Lösung mit Kommentaren im Code
+
+4.  1. Durchlaufen Sie die Liste der Aktienpreise und behalten Sie den bisherigen Minimalpreis und den bisherigen maximalen Gewinn im Auge.
+    2. Aktualisieren Sie bei jedem Schritt den bisherigen Minimalpreis auf den aktuellen Preis, wenn dieser niedriger als der bisherige Minimalpreis ist.
+    3. Aktualisieren Sie ebenfalls bei jedem Schritt den bisherigen maximalen Gewinn auf die Differenz zwischen dem aktuellen Preis und dem aktuellen Minimalpreis, wenn diese höher als der bisherige maximale Gewinn ist.
+    4. Geben Sie den bisherigen maximalen Gewinn als Ergebnis zurück.
+
+    pseudocode:
+
+    def maximum_profit(prices):
+    min_price = float('inf')
+    max_profit = 0
+    for price in prices:
+        min_price = min(min_price, price)
+        max_profit = max(max_profit, price - min_price)
+    return max_profit
+
+5.  1. Checke das beide Strings die selbe länge haben.
+    2. Sortiere beide strings.
+    3. Vergleiche die Sortierten Strings sind sie gleich sind es Permutationensonst nicht.
+
+    function isPermutation(a, b):
+    if len(a) != len(b):
+        return false
+    a_sorted = sort(a)
+    b_sorted = sort(b)
+    return a_sorted == b_sorted

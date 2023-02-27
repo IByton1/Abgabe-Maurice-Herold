@@ -30,10 +30,51 @@ using namespace std;
 
 
 size_t min_steps_beyond_last_index(const vector<size_t> &A) {
-  
-  // TODO: write code here
+  //size of the vector
+  size_t n = A.size();
+  //if size is 0 or the firt element is 0 its impossible 
+  if (n == 0 || A[0] == 0) {
+    return 0;
+  }
+  //if size is 1 need is 1 step
+  else if(n == 1){
+    return 1;
+  }
+  size_t max_reach = A[0];
+  size_t steps = A[0];
+  size_t jumps = 1;
+  //Start traversing vector
+  for (size_t i = 1; i < n; i++) {
+    //Check if value at current index guarantees jump to end
+    if (A[i] >= n - i) {
+       return jumps + 1;
+    }
+    //update max_reach
+    max_reach = max(max_reach, i + A[i]);
+    //we needed 1 step to get to the current index
+    steps--;
+    //check if steps left
+    if(steps == 0) {
+      //need to jump
+      jumps++;
+      // Check if the current index/position or lesser index
+      // is the maximum reach point from the previous indexes
+      if(i >= max_reach){
+        return 0;
+      }
+      // re-initialize the steps to the amount
+      // of steps to reach maxReach from position i.
+      steps = max_reach - i;
+    }
+  }
+  // cannot go beyond the last index, return 0
   return 0;
 }
+
+
+
+
+
 /*************** end assignment ***************/
 
 int main() {

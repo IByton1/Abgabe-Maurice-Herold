@@ -38,6 +38,7 @@ state compute_sudoku_state(const string &board) {
     return state::invalid;
   }
 
+  // If the length of the board string is not 81, then it is invalid.
   for (int i = 0; i < 81; i++) {
     char cell = board[i];
     if (cell != ' ' && (cell < '1' || cell > '9')) {
@@ -45,6 +46,8 @@ state compute_sudoku_state(const string &board) {
     }
   }
 
+  // Check if each character in the board string is either a digit from 1 to 9 or a space.
+  // If any other character is found, the board is invalid.
   for (int i = 0; i < 9; i++) {
     int row_count[10] = {0};
     int col_count[10] = {0};
@@ -63,13 +66,14 @@ state compute_sudoku_state(const string &board) {
         grid_count[grid_cell - '0']++;
       }
     }
+    // If any digit appears more than once in a row, column or grid, then the board is invalid.
     for (int j = 1; j <= 9; j++) {
       if (row_count[j] > 1 || col_count[j] > 1 || grid_count[j] > 1) {
         return state::invalid;
       }
     }
   }
-
+  // If the board has no empty cells, then it is solved.
   for (int i = 0; i < 81; i++) {
     if (board[i] == ' ') {
       return state::valid;

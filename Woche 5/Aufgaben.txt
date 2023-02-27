@@ -1,0 +1,28 @@
+1.  Ein Heap ist eine datenstruktur, die als Baum organisiert ist.
+    In der regel werden diese in Array´s gespeichert sie können reglichen und sortiert werden und das Kleinste oder größte Element steht in der Wurzel
+
+2.  Wir verwenden einen Min-Heap der größe k.
+    Nun lassen den Datenstrom sequenziell durchlaufen und berechnen für jedes neue wort die länge.
+    Wenn die größe des Min-Heap kleiner als k ist fügen wir das wort einfach hinzu. 
+    Andernfals vergleichen wir das kleinste wor im Min-Heap und ist die kleiner als das Aktuelle ersetzen wir es mit dem Aktuellen.
+    Am ende sind im Min_heap die k längsten wörter.
+
+3.  1. Jede Eingabedatei wird in mehrere kleine teile geteilte, die in den Ram passen nun sortieren wir jeden dieser Teile und schreiben sie in seperate Datein auf der Fetsplatte.
+    2. Nun fügen wir die sortierten teile in eine seperatet datei auf der Fetsplatte zusammmen.
+    3. Schritt 2 wird solange wiederholt bis es nur noch eine datei ist. 
+       Beim Zusammenführen der Dateien lesen wir jedes Mal einen Block von jeder Datei in den Arbeitsspeicher, sortieren die Elemente in diesem Block und schreiben das Ergebnis in eine Ausgabedatei auf der Festplatte.
+       Ist ein Block leer so lesen wir einen neuen aus der Datei ein bis alle elemnte sortiert sind.
+
+4.  Sortier-Netzwerk ist ein paralleler Sortieralgorithmus, welcher aus einer Folge an vergleichen zwischen Elementen einer Eingabeliste besteht.
+    Es gibt verschiedene Schichten, welche aus aus Gruppen von vergleichen bestehen.
+    Sie werden meist für Anwendungen eingesetzt, bei denen die Parallelität von Vorteil ist.
+
+5.  Set Operationen könne dadurch beschleunigt werden da sortierte Mengen schneller durchsucht werden können und Redundanzen leicht erkannt werden können.
+    Sortierte listen können auch einfacher zusammen gefügt werden was das berechnen von Vereinigung, den Schnitt oder die Differenz vereinfacht.
+
+6.  Eine MPHF ermöglicht schnelle Suchoperationen auf einer statischen Menge von Schlüsseln, ohne dass eine Datenstruktur wie eine Hashtabelle oder ein Suchbaum benötigt wird.
+    Mann benötigt keinen zusätzlichen speicher und man hat eine konstante Zeitkomplexität.
+     
+
+
+

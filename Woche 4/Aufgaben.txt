@@ -1,0 +1,23 @@
+1.  Wenn es nicht der letzte knoten ist können wir den wert des nächsten Knoten nehmen in eine Temporäre Variable speicher,
+    dann den inhalte des nächsten Knotens in den aktuellen Knoten kopieren und dann löscht man den nächsten knoten.
+
+2.  Die grundlegende Idee ist es zwie Runner über eine Liste laufen zulassen einer davon ist langsamer der andere hingegen ist schneller somit kann man bestimmte aufgaben schneller lösen.
+    Verwenden kann man dies z.b um die mitter einer liste zu finden.
+    Ein runner läuft normal durch der andere doppelt so schnell so mit steht der langsamere in der mitte wenn der schnelle am ende ist.
+    
+3.  Mann kann einen Stack als Verkettete liste implementieren somit hat man eine Liste von knoten, welche das Aktuelle und einen zeiger auf das vorherige Element enthält.
+    
+
+4.  Ein binärer Baum und binärer Suchbaum sind beides hierarchische Datenstrulturen, welche pro Knoten maximal 2 Kinder haben können.
+    Der unterschied besteht darin das ein binärer Suchbaum eine speziele anordnung hat.
+    Der linke teilbaum enthält alle Knoten die kleiner als die aktuellen sind und der rechteteilbaum alle die größer sind.
+    Beim binären Baum kommte es drauf an wie die knoten hinzugefügt werden.
+
+5.  Es gibt 3 Verschiedene Arten:
+    Preorder: Wurzel - Linker Teilbaum - Rechter Teilbaum
+    Inorder: Linker Teilbaum - Wurzel - Rechter Teilbaum
+    Postorder: Linker Teilbaum - Rechter Teilbaum - Wurzel
+
+6.  Trie und Radix-Baum sind baumstrukturen um Strings und Texte zu speichern.
+    In einem Trie wird in jedem knoten ein Buchstabe gespeicher in einem Radix-Baum hingegen können mehrere Buchstaben in einem Knoten speichert werden.
+
