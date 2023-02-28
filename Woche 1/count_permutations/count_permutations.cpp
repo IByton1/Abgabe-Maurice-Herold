@@ -37,28 +37,34 @@ using namespace std;
 // on your own. Observe how you do this. This will help you to develop a decent
 // algorithm quite easily.
 
-int count_permutations(const string &s, const string &b) {
+int count_permutations(const string &s, const string &b)
+{
   int count = 0;
   int product_b = 1;
   int product_s = 1;
 
   // If b is shorter than s or s has length less than 1, return 0
-  if(b.length() < s.length() || s.length() < 1){
-      return count;
+  if (b.length() < s.length() || s.length() < 1)
+  {
+    return count;
   }
 
   // Calculate the product of characters in s
-  for(int i = 0; i < s.length(); i++){
+  for (int i = 0; i < s.length(); i++)
+  {
     product_s *= s[i];
-    }
+  }
   // Loop over all possible substrings of b of length s.length()
-  for (int i = 0; i <= b.length() - s.length(); i++) {
+  for (int i = 0; i <= b.length() - s.length(); i++)
+  {
     // Calculate the product of characters in the current substring of b
-    for(int j = 0; j < s.length(); j++){
-      product_b *= b[i+j];
+    for (int j = 0; j < s.length(); j++)
+    {
+      product_b *= b[i + j];
     }
     // If the product of characters in the substring of b matches the product of characters in s, increment count
-    if(product_b == product_s){
+    if (product_b == product_s)
+    {
       count++;
     }
     // Reset the product_b variable for the next substring of b
@@ -69,7 +75,8 @@ int count_permutations(const string &s, const string &b) {
 
 /*************** end assignment ***************/
 
-int main() {
+int main()
+{
   // longer string is not a permutation of shorter string
   assert(count_permutations("cbabadcbbabbcba", "abbc") == 0);
 
@@ -99,4 +106,3 @@ int main() {
 
   cout << "all tests passed" << endl;
 }
-

@@ -1,0 +1,45 @@
+Test case 1:
+Input:
+2
+
+A
+AB
+BC
+CA
+
+A
+BD
+DC
+CE
+EB
+
+Output:
+1
+
+1
+
+Test case 2:
+Input:
+1
+
+A
+BC
+DE
+FG
+HI
+JK
+
+Output:
+6
+
+Test case 3:
+Input:
+1
+
+A
+BC
+CD
+DA
+
+Output:
+2

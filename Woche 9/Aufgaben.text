@@ -1,0 +1,14 @@
+1.  Enhält ein Graph einen Zyklus, dann gibt es keine Möglichkeit, die Knoten topologisch zu sortieren.
+    Denn sortiert man eine solche schleife gibt es keine richtigen Reihenfolge die gerichteten Kanten zu durchlaufen.
+    In einem azyklischen Graphen sidn jedoch keine Zyklen enthalten.
+
+2.  Benutz wird eine Schleife die die Zahlen von 0 bis n-1 durchläuft.
+    Ist eine Zahl durch 5 oder 3 Teilbar wird sie auf die summe adiert.
+
+3.  Der Garph der Textdatei wird in einer Adjazenzliste in einem Vektor gespeichert.
+    Dann wird der Prim-Algorithmus verwendet, um den MST des Graphen zu berechnen.
+    Der Prim-Algorithmus wählt immer die Knate mit dem kleinsten gewicht, welche zu einem nicht besuchten Knoten führt.
+    Dabei wird die summe der gewählten kanten berechnen.
+    Das Gewicht der ursprünglichen Kanten kann berechnen werdne, indem man das Summengewicht durch 2 teilt und es von der Summe aller Kanten-Gewichte subtrahiert.
+
+    Der Algorithmus wurde gewählt da er leicht zu implementieren ist und eine effiziente Laufzeit hat.

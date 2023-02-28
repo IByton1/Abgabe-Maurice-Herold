@@ -1,0 +1,17 @@
+1.  Der Edmonds-Karp Algorithmus beginnt damit, einen Residualgraphen des ursprünglichen Netzwerks zu erstellen, der die verbleibende Kapazität zwischen den Knoten im Netzwerk anzeigt.
+    Nun führt man eine Breitensuche im Residualgraphen durch um den weg mit der geringste Kapazität zu finden und damit die Erhöhung des Flusses begrenzt.
+    Nachdem der weg gefunden ist erhöt man den weg des Flusses indem der Fluss durch die Kanten des Weges erhöht wird und die Residualkapazitäten aktualisiert werden. 
+    Das wiederholt man solange bis kein weg mehr gefunden werden kann findet man keinen weg mehr so hat man den maximalen Fluss berechnent.
+
+2.  Die Regel besagt, dass, wenn die Zahl ungerade ist, sie mit 3 multipliziert und 1 addiert wird. 
+    Wenn die Zahl gerade ist, wird sie halbiert. 
+    Der Algorithmus berechnet die Anzahl der Schritte, die benötigt werden, um die Zahl auf 1 zu reduzieren, und gibt diese Zahl zurück. 
+    Verwendet wird eine einfache Brutforce methode
+
+3.  Für das Problem wird eine Tiefensuche auf einen ungerichteten Graphen verwendet.
+    Das heißt das jeder Knoten des Grapghen der vom Startknoten ereicht werden kann besucht wird.
+    Jeder besuchte Knoten wird als besucht makiert.
+    Um die Anzahl der maximal verbundenen Teilgraphen zu finden führt man die Tiefensuche solang durch bis alle Knoten besucht worden und erhöt die Anzahl nach jeder suche.
+    
+    Um das Probelm zulösen kann man eine Breitensuche oder Tiefensuche verwenden Bfs eignet sich mehr um den Kürzesten weg zu finden daher wird Dfs verwendet.
+    

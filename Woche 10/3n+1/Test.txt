@@ -1,0 +1,17 @@
+Test case 1:
+Input:
+1 10
+Output:
+1 10 20
+
+Test case 2:
+Input:
+10 1
+Output:
+1 10 20
+
+Test case 3:
+Input:
+999999 1000000
+Output:
+999999 1000000 259
