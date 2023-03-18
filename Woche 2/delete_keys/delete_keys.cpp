@@ -23,13 +23,16 @@ inline size_t delete_keys(vector<int> &v, const int key) {
   size_t j = 0;
   // Loop through the vector.
   while (i < v.size()) {
-    // If the current element is not equal to the key, update the vector.
+    // If the current element is not equal to the key, update the vector by copying the current element to position j.
     if (v[i] != key) {
       v[j] = v[i];
+      // Increment j to move to the next position in the updated vector.
       ++j;
     }
+    // Increment i to move to the next element in the original vector.
     ++i;
   }
+  // Return the number of elements in the updated vector.
   return j;
 }
 

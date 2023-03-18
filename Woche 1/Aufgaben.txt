@@ -7,17 +7,17 @@
     O(n log n): Merge-Sort.
     O(n^2): Bubble-Sort.
 
-3.  1. Das Problem verstehen: Sicher sein, dass man das Problem verstanden hat wichtige sachen notirern und wenn nötig nachfragen.
+3.  1. Das Problem verstehen: Sicher sein, dass man das Problem verstanden hat. Wichtige Sachen notieren und wenn nötig nachfragen.
     2. Ein Plan entwickeln: Zuerst überlegen wie man an das Problem ran geht und welcher ansatz der besste ist.
-    3. Den code Implementieren: Den Code schritt für schritt für das Problem schreiben um sicher zusein, dass die Zwischenergebnise richtig sind.
-    4. Den Code Testen: Teste ob dein Code richtig Funktioniert und ändere dinge die nicht gehen.
-    5. Optimiren: Optimiere deine Lösung soweit es geht (unnötige schleifen, bessere Algorithmen)
-    6. Dokumentiere dein Lösung mit Kommentaren im Code
+    3. Den Code implementieren: Den Code Schritt für Schritt für das Problem schreiben, um sicher zu sein, dass die Zwischenergebnisse richtig sind.
+    4. Den Code testen: Teste, ob dein Code richtig funktioniert und ändere Dinge, die nicht gehen.
+    5. Optimieren: Optimiere deine Lösung soweit es geht (unnötige Schleifen, bessere Algorithmen).
+    6. Dokumentiere deine Lösung mit Kommentaren im Code.
 
-4.  1. Durchlaufen Sie die Liste der Aktienpreise und behalten Sie den bisherigen Minimalpreis und den bisherigen maximalen Gewinn im Auge.
-    2. Aktualisieren Sie bei jedem Schritt den bisherigen Minimalpreis auf den aktuellen Preis, wenn dieser niedriger als der bisherige Minimalpreis ist.
-    3. Aktualisieren Sie ebenfalls bei jedem Schritt den bisherigen maximalen Gewinn auf die Differenz zwischen dem aktuellen Preis und dem aktuellen Minimalpreis, wenn diese höher als der bisherige maximale Gewinn ist.
-    4. Geben Sie den bisherigen maximalen Gewinn als Ergebnis zurück.
+4.  1. Durchlaufe die Liste der Aktienpreise und behalte den bisherigen Minimalpreis und den bisherigen maximalen Gewinn im Auge.
+    2. Aktualisiere bei jedem Schritt den bisherigen Minimalpreis auf den aktuellen Preis, wenn dieser niedriger als der bisherige Minimalpreis ist.
+    3. Aktualisiere ebenfalls bei jedem Schritt den bisherigen maximalen Gewinn auf die Differenz zwischen dem aktuellen Preis und dem aktuellen Minimalpreis, wenn diese höher als der bisherige maximale Gewinn ist.
+    4. Gib den bisherigen maximalen Gewinn als Ergebnis zurück.
 
     pseudocode:
 
@@ -29,9 +29,9 @@
         max_profit = max(max_profit, price - min_price)
     return max_profit
 
-5.  1. Checke das beide Strings die selbe länge haben.
-    2. Sortiere beide strings.
-    3. Vergleiche die Sortierten Strings sind sie gleich sind es Permutationensonst nicht.
+5.  1. Überprüfe, ob beide Strings dieselbe Länge haben.
+    2. Sortiere beide Strings.
+    3. Vergleiche die sortierten Strings. Wenn sie gleich sind, handelt es sich um Permutationen, sonst nicht.
 
     function isPermutation(a, b):
     if len(a) != len(b):

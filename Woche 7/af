@@ -1,0 +1,263 @@
+#include <iostream>
+#include <string>
+#include <vector>
+#include <algorithm>
+#include <bits/stdc++.h>
+
+using namespace std;
+
+const int H = 7;
+const int W = 11;
+const string    DISH = "DISH", STRAWBERRIES = "STRAWBERRIES", BLUEBERRIES = "BLUEBERRIES", 
+                ICE_CREAM = "ICE_CREAM", NONE = "NONE", CROISSANT = "CROISSANT", DOUGH = "DOUGH",
+                OVEN = "OVEN", CHOPPED_STRAWBERRIES = "CHOPPED_STRAWBERRIES";
+vector<string> grid(H);
+pair<int, int> partnerPosition;
+
+set<string> splitString(const string &s){
+    set<string> items;
+    stringstream ss;
+    for(char c : s){
+        if(c == '-'){
+            items.insert(ss.str());
+            ss.str("");
+        }
+        else{
+            ss << c;
+        }
+    }
+    items.insert(ss.str());
+    return items;
+}
+
+
+struct Customer{
+    set<string> item;
+    int award;
+    void read(){
+        string s;
+        cin >> s >> award;
+        item = splitString(s);
+    }
+};
+
+struct Player{
+    int row, col;
+    set<string> item;
+    set<string> toDo;
+    void read(){
+        string s;
+        cin >> row >> col >> s;
+        item = splitString(s);
+
+    }    
+};
+
+struct Tabel{
+    int row, col;
+    set<string> item;
+    void read(){
+        string s;
+        cin >> row >> col >> s;
+        item = splitString(s);
+    }
+};
+
+bool inside(int row, int col){
+    return 0 <= row && row < H && 0 <= col && col < W;
+}
+
+bool empty(int row, int col){
+    assert(inside(row,col));
+    return grid[row][col] == '.' && make_pair(row, col) != partnerPosition;
+}
+
+int cheapest(vector<Customer> customers) {
+    int minPrice = INT_MAX;
+    int cheapestCustomerIndex = -1;
+    for (int i = 0; i < customers.size(); i++) {
+        if (customers[i].award < minPrice) {
+            minPrice = customers[i].award;
+            cheapestCustomerIndex = i;
+        }
+    }
+    return cheapestCustomerIndex;
+}
+
+bool matchToDoWithCustomer(const Player& player, const vector<Customer>& customers) {
+    for (const auto& todo : player.toDo) {
+        for (const auto& customer : customers) {
+            if (customer.item.count(todo) > 0) {
+                return true;
+            }
+        }
+    }
+    return false;
+}
+
+void checkToDoEmpty(Player& player, vector<Customer>& customersAll) {
+    if (player.toDo.empty()) {
+        int cheapestIndex = cheapest(customersAll);
+        if (cheapestIndex != -1) {
+            player.toDo = customersAll[cheapestIndex].item;
+        }
+    }
+    else if(!matchToDoWithCustomer(player, customersAll)){
+        int cheapestIndex = cheapest(customersAll);
+        if (cheapestIndex != -1) {
+            player.toDo = customersAll[cheapestIndex].item;
+        }
+    }
+}
+
+pair<int, int> findNextEmptySpot() {
+    pair<int, int> emptySpot;
+    for(int row = 0; row < H; row++){
+        for(int col = 0; col < W; col++){
+            if(empty(row, col)){
+                emptySpot = make_pair(row, col);
+                return emptySpot;
+            }
+        }
+    }
+    // No empty spots found, return partner position as fallback
+    return partnerPosition;
+}
+
+
+int main()
+{
+    char need;
+    int count;
+    int numAllCustomers;
+    cin >> numAllCustomers;
+    vector<Customer> customersAll(numAllCustomers);
+    for(Customer& customer : customersAll){
+        customer.read();
+    }
+
+    for(string &s : grid){
+        cin >> s;
+    }
+
+    // game loop
+    while (1) {
+        bool done = false;
+        int turns_remaining;
+        cin >> turns_remaining;
+        Player player, partner;
+        player.read();
+        partner.read();
+        partnerPosition = make_pair(partner.row, partner.col);
+        
+        int numItems; // the number of tables in the kitchen that currently hold an item
+        cin >> numItems;
+        vector<Tabel> tabel(numItems);
+        for(Tabel &tabel : tabel){
+            tabel.read();
+        }
+
+        string oven_contents; // ignore until wood 1 league
+        int oven_timer;
+        cin >> oven_contents >> oven_timer; cin.ignore();
+
+        int numCustomers; // the number of customers currently waiting for food
+        cin >> numCustomers;
+        vector<Customer> customersWait(numCustomers);
+        for(Customer& customer : customersWait){
+            customer.read();
+        }
+
+        // Write an action using cout. DON'T FORGET THE "<< endl"
+        // To debug: cerr << "Debug messages..." << endl;
+
+
+
+
+
+
+        // MOVE x y
+        // USE x y
+        // WAIT
+        auto wait = [&](){
+            assert(!done);
+            cout << "WAIT" << endl;
+            done = true;
+        };
+
+        auto use = [&](int row, int col){
+            assert(!done);
+            cout << "USE " << col << " " << row << endl;
+            done = true;
+        };
+
+        checkToDoEmpty(player, customersWait);
+        
+        
+
+        
+        for(int row = 0; row < H; row++){
+            for(int col = 0; col < W; col++){
+                if(grid[row][col] == need){
+                    use(row, col);
+                }
+            }
+        }
+        if(!done){
+            wait();
+        }
+        count ++;
+    }
+}
+
+
+
+if(toDo.count(CROISSANT)){
+                if(player.item.count(NONE) && o == false){
+                    need ='H';
+                }
+                else if(player.item.count(DOUGH)){
+                    need ='O';
+                    o = true;
+                }
+                else if(player.item.count(NONE) && o == true){
+                    need = 'O';
+                    o = false;
+
+                }
+                else if(player.item.count(CROISSANT)){
+                    need = '#';
+                    h = true;
+                }
+            }
+
+            else if(toDo.count(CHOPPED_STRAWBERRIES)){
+                if(player.item.count(STRAWBERRIES)){
+                    need ='C';
+                }
+                else if(player.item.count(CHOPPED_STRAWBERRIES)){
+                    need = '#';
+                    s = true;
+                }
+                else{
+                    need = 'S';
+                }
+            }
+
+            else if(toDo.count(BLUEBERRIES)){
+                if(player.item.count(DISH)){
+                    need ='B';
+                }
+                else{
+                    need = 'D';
+                }
+            }
+
+            else if(toDo.count(ICE_CREAM)){
+                if(player.item.count(DISH)){
+                    need ='I';
+                }
+                else{
+                    need = 'D';
+                }
+            }

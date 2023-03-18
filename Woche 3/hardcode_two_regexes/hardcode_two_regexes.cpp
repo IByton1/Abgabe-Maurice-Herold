@@ -288,7 +288,7 @@ void fast_clean(string &text) {
 /*************** end assignment ***************/
 
 int main() {
-  ifstream ifs("/messy_text.txt");
+  ifstream ifs("messy_text.txt");
   if (ifs.fail()) {
     cerr << "file not found\n";
     return 0;
