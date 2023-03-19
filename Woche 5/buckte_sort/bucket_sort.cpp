@@ -72,30 +72,27 @@ vector<Employee> generate_random_vector(int n) {
 // parallelization possibilities for C++.
 
 void bucket_sort(vector<Employee> &employees) {
-  const int kNumBuckets = 53; // arbitrary prime number
+  // Create 53 buckets to cover ages between 18 and 70 (inclusive)
+  const int min_age = 18;
+  const int max_age = 70;
+  const int num_buckets = max_age - min_age + 1;
+  vector<vector<Employee>> buckets(num_buckets);
 
-  // create the buckets
-  vector<vector<Employee>> buckets(kNumBuckets);
-
-  // distribute the employees into the buckets
-  for (const auto &employee : employees) {
-    int bucket_idx = employee.age - 18; // shift age to [0, 52] range
-    buckets[bucket_idx].push_back(employee);
+  // Place employees into their respective age buckets
+  for (const Employee &e : employees) {
+    int bucket_index = e.age - min_age;
+    buckets[bucket_index].push_back(e);
   }
 
-  // clear the original vector and fill it with the sorted employees
-  employees.clear();
-  for (auto &bucket : buckets) {
-    sort(bucket.begin(), bucket.end(), [](const Employee &e1, const Employee &e2) {
-      return e1.age < e2.age;
-    });
-    employees.insert(employees.end(), bucket.begin(), bucket.end());
+  // Iterate through buckets and concatenate them to form the sorted list
+  size_t index = 0;
+  for (int i = 0; i < num_buckets; ++i) {
+    for (const Employee &e : buckets[i]) {
+      employees[index] = e;
+      ++index;
+    }
   }
-  
 }
-
-
-
 /*************** end assignment ***************/
 
 int main() {
@@ -107,6 +104,7 @@ int main() {
     bucket_sort(copy_employess);
     assert(employees == copy_employess);
   }
+
   TIMERSTART(generate_random_vector)
   int n = 100000000;
   auto employees = generate_random_vector(n);
@@ -121,5 +119,4 @@ int main() {
   bucket_sort(copy_employess);
   TIMERSTOP(bucket_sort)
   assert(employees == copy_employess);
-
 }
