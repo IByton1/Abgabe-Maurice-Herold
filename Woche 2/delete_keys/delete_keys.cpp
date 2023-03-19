@@ -18,13 +18,16 @@ using namespace std;
 // valid element are the same as in the original array.
 // (Requirements: O(1) space, O(n) time)
 
-inline size_t delete_keys(vector<int> &v, const int key) {
+inline size_t delete_keys(vector<int> &v, const int key)
+{
   size_t i = 0;
   size_t j = 0;
   // Loop through the vector.
-  while (i < v.size()) {
+  while (i < v.size())
+  {
     // If the current element is not equal to the key, update the vector by copying the current element to position j.
-    if (v[i] != key) {
+    if (v[i] != key)
+    {
       v[j] = v[i];
       // Increment j to move to the next position in the updated vector.
       ++j;
@@ -38,7 +41,8 @@ inline size_t delete_keys(vector<int> &v, const int key) {
 
 /*************** end assignment ***************/
 
-int main() {
+int main()
+{
   {
     vector<int> v;
     vector<int> vresult;
