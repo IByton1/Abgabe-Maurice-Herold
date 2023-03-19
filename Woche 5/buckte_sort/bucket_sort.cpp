@@ -13,41 +13,47 @@
 using namespace std;
 
 // helper macros for timing
-#define TIMERSTART(label)                                                      \
-  std::chrono::time_point<std::chrono::system_clock> a##label, b##label;       \
+#define TIMERSTART(label)                                                \
+  std::chrono::time_point<std::chrono::system_clock> a##label, b##label; \
   a##label = std::chrono::system_clock::now();
 
-#define TIMERSTOP(label)                                                       \
-  b##label = std::chrono::system_clock::now();                                 \
-  std::chrono::duration<double> delta##label = b##label - a##label;            \
-  std::cout << #label << ": " << delta##label.count() << " seconds"            \
+#define TIMERSTOP(label)                                            \
+  b##label = std::chrono::system_clock::now();                      \
+  std::chrono::duration<double> delta##label = b##label - a##label; \
+  std::cout << #label << ": " << delta##label.count() << " seconds" \
             << std::endl;
 
-struct Employee {
+struct Employee
+{
   int id;  // employee id (not important for us ...)
   int age; // all people are between 18 <= years <= 70 (evenly distributed)
 
   // for testing equality
-  bool operator==(const Employee &rhs) const {
+  bool operator==(const Employee &rhs) const
+  {
     return id == rhs.id && age == rhs.age;
   }
   bool operator!=(const Employee &rhs) const { return !(rhs == *this); }
 };
 
 // to compare with your implementation we use std::stable_sort
-void sort_with_std_stable(vector<Employee> &employees) {
+void sort_with_std_stable(vector<Employee> &employees)
+{
   // stable sort --> order of items in output vector don't change if age is
   // equal, needs O(n) extra space since it's a kind of Mergesort
   stable_sort(begin(employees), end(employees),
-              [](const Employee &e1, const Employee &e2) {
+              [](const Employee &e1, const Employee &e2)
+              {
                 return e1.age < e2.age; // sort by age in increasing order
               });
 }
 
-vector<Employee> generate_random_vector(int n) {
+vector<Employee> generate_random_vector(int n)
+{
   vector<Employee> employees;
   employees.reserve(n);
-  for (int i = 0; i < n; ++i) {
+  for (int i = 0; i < n; ++i)
+  {
     employees.push_back({i, rand() % (71 - 18) + 18}); // not really random!
   }
   return employees;
@@ -71,36 +77,40 @@ vector<Employee> generate_random_vector(int n) {
 // In the course next semester "Algorithm Engineering Lab" we'll learn simple
 // parallelization possibilities for C++.
 
-void bucket_sort(vector<Employee> &employees) {
-  const int kNumBuckets = 53; // arbitrary prime number
+void bucket_sort(vector<Employee> &employees)
+{
+  // Create 53 buckets to cover ages between 18 and 70 (inclusive)
+  const int min_age = 18;
+  const int max_age = 70;
+  const int num_buckets = max_age - min_age + 1;
+  vector<vector<Employee>> buckets(num_buckets);
 
-  // create the buckets
-  vector<vector<Employee>> buckets(kNumBuckets);
-
-  // distribute the employees into the buckets
-  for (const auto &employee : employees) {
-    int bucket_idx = employee.age - 18; // shift age to [0, 52] range
-    buckets[bucket_idx].push_back(employee);
+  // Place employees into their respective age buckets
+  for (const Employee &e : employees)
+  {
+    int bucket_index = e.age - min_age;
+    buckets[bucket_index].push_back(e);
   }
 
-  // clear the original vector and fill it with the sorted employees
-  employees.clear();
-  for (auto &bucket : buckets) {
-    sort(bucket.begin(), bucket.end(), [](const Employee &e1, const Employee &e2) {
-      return e1.age < e2.age;
-    });
-    employees.insert(employees.end(), bucket.begin(), bucket.end());
+  // Iterate through buckets and concatenate them to form the sorted list
+  size_t index = 0;
+  for (int i = 0; i < num_buckets; ++i)
+  {
+    for (const Employee &e : buckets[i])
+    {
+      employees[index] = e;
+      ++index;
+    }
   }
-  
 }
-
-
 
 /*************** end assignment ***************/
 
-int main() {
+int main()
+{
   // test correctness
-  for (int i = 0; i < 1000; ++i) {
+  for (int i = 0; i < 1000; ++i)
+  {
     auto employees = generate_random_vector(i);
     auto copy_employess = employees;
     sort_with_std_stable(employees);
@@ -121,5 +131,4 @@ int main() {
   bucket_sort(copy_employess);
   TIMERSTOP(bucket_sort)
   assert(employees == copy_employess);
-
 }
