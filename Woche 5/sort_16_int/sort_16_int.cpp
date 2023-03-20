@@ -178,4 +178,5 @@ int main() {
     TIMERSTOP(greens_sorting_network)
 
     assert(v1 == v2);
+  
 }
