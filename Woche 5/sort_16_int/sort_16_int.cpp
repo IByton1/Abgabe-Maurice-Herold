@@ -14,23 +14,24 @@
 using namespace std;
 
 // helper macros for timing
-#define TIMERSTART(label)                                                      \
-  std::chrono::time_point<std::chrono::system_clock> a##label, b##label;       \
-  a##label = std::chrono::system_clock::now();
+#define TIMERSTART(label)                                                  \
+    std::chrono::time_point<std::chrono::system_clock> a##label, b##label; \
+    a##label = std::chrono::system_clock::now();
 
-#define TIMERSTOP(label)                                                       \
-  b##label = std::chrono::system_clock::now();                                 \
-  std::chrono::duration<double> delta##label = b##label - a##label;            \
-  std::cout << #label << ": " << delta##label.count() << " seconds"            \
-            << std::endl;
+#define TIMERSTOP(label)                                              \
+    b##label = std::chrono::system_clock::now();                      \
+    std::chrono::duration<double> delta##label = b##label - a##label; \
+    std::cout << #label << ": " << delta##label.count() << " seconds" \
+              << std::endl;
 
 // macro simulates a COEX module
-#define COEX(a, b)                                                             \
-  if (a > b) {                                                                 \
-    int c = a;                                                                 \
-    a = b;                                                                     \
-    b = c;                                                                     \
-  }
+#define COEX(a, b) \
+    if (a > b)     \
+    {              \
+        int c = a; \
+        a = b;     \
+        b = c;     \
+    }
 
 /************** begin assignment **************/
 // Implement Green's sorting network to sort 16 integers.
@@ -40,7 +41,8 @@ using namespace std;
 // module of a sorting network.
 
 // sorting network to sort 16 integers
-inline void sort_16_int(int *arr) {
+inline void sort_16_int(int *arr)
+{
     // First layer
     COEX(arr[0], arr[1]);
     COEX(arr[2], arr[3]);
@@ -52,10 +54,10 @@ inline void sort_16_int(int *arr) {
     COEX(arr[14], arr[15]);
 
     // Second layer
-    COEX(arr[0], arr[2]); 
-    COEX(arr[1], arr[3]); 
-    COEX(arr[4], arr[6]); 
-    COEX(arr[5], arr[7]); 
+    COEX(arr[0], arr[2]);
+    COEX(arr[1], arr[3]);
+    COEX(arr[4], arr[6]);
+    COEX(arr[5], arr[7]);
     COEX(arr[8], arr[10]);
     COEX(arr[9], arr[11]);
     COEX(arr[12], arr[14]);
@@ -110,37 +112,41 @@ inline void sort_16_int(int *arr) {
     COEX(arr[7], arr[9]);
     COEX(arr[10], arr[12]);
 
-    //Ninth layer
+    // Ninth layer
     COEX(arr[3], arr[4]);
     COEX(arr[5], arr[6]);
     COEX(arr[7], arr[8]);
     COEX(arr[9], arr[10]);
     COEX(arr[11], arr[12]);
 
-    //Tenth layer
+    // Tenth layer
     COEX(arr[6], arr[7]);
     COEX(arr[8], arr[9]);
 }
 
-void print_array(const vector<int> &arr) {
-    for (int x : arr) {
+void print_array(const vector<int> &arr)
+{
+    for (int x : arr)
+    {
         std::cout << x << " ";
     }
     std::cout << std::endl;
 }
 
-
 /*************** end assignment ***************/
 
-int main() {
+int main()
+{
     // test correctness with zero-one principle
     // http://www.euroinformatica.ro/documentation/programming/!!!Algorithms_CORMEN!!!/DDU0170.html
     {
         vector<int> a(16);
         vector<int> b(16);
-        for (uint32_t i = 0; i <= UINT16_MAX; ++i) {
+        for (uint32_t i = 0; i <= UINT16_MAX; ++i)
+        {
             uint32_t num = i;
-            for (int j = 0; j < 16; ++j) {
+            for (int j = 0; j < 16; ++j)
+            {
                 a[j] = num & 1u;
                 num >>= 1u;
             }
@@ -156,7 +162,8 @@ int main() {
     vector<int> v1(n);
     auto rand_int = bind(uniform_int_distribution<int>{INT32_MIN, INT32_MAX},
                          default_random_engine{std::random_device{}()});
-    for (int i = 0; i < n; ++i) {
+    for (int i = 0; i < n; ++i)
+    {
         v1[i] = rand_int();
     }
     auto v2 = v1;
@@ -164,19 +171,20 @@ int main() {
 
     int repetitions = 100000000;
     TIMERSTART(std_sort)
-    for (int i = 0; i < repetitions; ++i) {
+    for (int i = 0; i < repetitions; ++i)
+    {
         v1 = v_copy;
         sort(begin(v1), end(v1));
     }
     TIMERSTOP(std_sort)
 
     TIMERSTART(greens_sorting_network)
-    for (int i = 0; i < repetitions; ++i) {
+    for (int i = 0; i < repetitions; ++i)
+    {
         v2 = v_copy; // copy time is here significantly, 1/5 of the total runtime!
         sort_16_int(v2.data());
     }
     TIMERSTOP(greens_sorting_network)
 
     assert(v1 == v2);
-  
 }

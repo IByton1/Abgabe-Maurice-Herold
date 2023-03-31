@@ -1,0 +1,21 @@
+1.  Der Bot beginnt damit, die Bestellung mit der geringsten Belohnung auszuwählen,
+    da die anderen in der Regel teurer Aufgaben erledigen. 
+    Anschließend beginnt der Bot mit der "schwersten" Aufgabe der Bestellung, z.B. dem Croissant oder den Erdbeeren, 
+    da bei diesen mehrere Schritte erforderlich sind. Sobald er diese erledigt hat, 
+    geht er zu den einfacheren Aufgaben über und arbeitet diese ab. Der Teller wird genommen, 
+    wenn Erdbeeren produziert werden müssen oder wenn Dinge gebacken worden sind.
+    Benötigt er nichts von den Beiden nimmt er den Teller sofort auf.
+
+2.  Wenn der Ofen bereits belegt ist, funktioniert der Bot nicht richtig, da er die gesamte Zeit wartet, bis er seine Sachen in den Ofen legen kann.
+
+3.  Das Backen ist schlecht implementiert, da der Bot immer erst wartet, bis es fertig gebacken ist. 
+    In dieser Zeit könnte er sinnvolle andere Dinge machen. Es funktioniert jedoch, da das Backen 10 Züge dauert und der Bot somit 5 Züge zur Verfügung hat, 
+    um z.B. Erdbeeren zu produzieren oder andere Dinge auf den Teller zu packen. Eine weitere Verbesserung wäre, 
+    wenn der Bot auf dem Tisch nach fertigen Sachen suchen würde, falls bereits Dinge produziert wurden. Dies funktioniert, 
+    da unser Gegner gegebenenfalls Dinge auf dem Tisch ablegt, die wir ihm somit klauen könnten, um unsere Bestellung fertigzustellen.
+    Man kann die Aufgaben auch so sortieren, dass die Ressourcen immer voll ausgelastet sind, also der Tisch oder der Ofen. 
+    Das funktioniert, da der Bot die verfügbaren Ressourcen effektiver nutzen kann. Wenn der Ofen verfügbar ist, 
+    kann der Bot die Aufgaben priorisieren, die gebacken werden müssen, während er die Aufgaben, die auf dem Tisch erledigt werden können, 
+    priorisiert, wenn der Ofen belegt ist. Eine weitere Möglichkeit wäre, mehrere Aufträge gleichzeitig zu erledigen. Somit kann der Bot,
+    wenn die Aufgaben nicht miteinander kollidieren, viel effizienter arbeiten und die Aufträge schneller bearbeiten. Wenn er z.B. 
+    auf den Ofen für die eine Aufgabe wartet, geht er einfach zur nächsten Aufgabe über.

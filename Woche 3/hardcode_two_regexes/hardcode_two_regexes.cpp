@@ -14,34 +14,38 @@
 using namespace std;
 
 // helper macros for timing
-#define TIMERSTART(label)                                                      \
-  std::chrono::time_point<std::chrono::system_clock> a##label, b##label;       \
+#define TIMERSTART(label)                                                \
+  std::chrono::time_point<std::chrono::system_clock> a##label, b##label; \
   a##label = std::chrono::system_clock::now();
 
-#define TIMERSTOP(label)                                                       \
-  b##label = std::chrono::system_clock::now();                                 \
-  std::chrono::duration<double> delta##label = b##label - a##label;            \
-  std::cout << #label << ": " << std::setprecision(4) << delta##label.count()  \
+#define TIMERSTOP(label)                                                      \
+  b##label = std::chrono::system_clock::now();                                \
+  std::chrono::duration<double> delta##label = b##label - a##label;           \
+  std::cout << #label << ": " << std::setprecision(4) << delta##label.count() \
             << " seconds" << std::endl;
 
 // function replaces "search_for" in-place with "replace_with" in string "s"
 inline void replace_space_out(std::string &s, const std::string &search_for,
-                              const std::string &replace_with) {
+                              const std::string &replace_with)
+{
   // not allowed to replace with a longer string
-  if (replace_with.size() > search_for.size()) {
+  if (replace_with.size() > search_for.size())
+  {
     throw std::runtime_error(
         "size of <replace_with> must be <= size of <search_for>");
   }
-  if (search_for.empty()) 
+  if (search_for.empty())
     return;
 
   // strstr locates a substring and returns a pointer to the first occurrence
   char *pch = const_cast<char *>(strstr(s.data(), search_for.data()));
-  while (pch != nullptr) { // repeat till the end is reached
+  while (pch != nullptr)
+  { // repeat till the end is reached
     // copies all characters from replace_with to pch
     strncpy(pch, replace_with.data(), replace_with.size());
     // overwrite invalid characters with spaces
-    for (size_t i = 0; i < search_for.size() - replace_with.size(); ++i) {
+    for (size_t i = 0; i < search_for.size() - replace_with.size(); ++i)
+    {
       pch[i + replace_with.size()] = ' ';
     }
     // search for the next occurrence of string search_for
@@ -50,13 +54,15 @@ inline void replace_space_out(std::string &s, const std::string &search_for,
 }
 
 // counts the number of occurrences of a word in the text
-inline size_t count_word_with_c(const string &text, const string &word) {
+inline size_t count_word_with_c(const string &text, const string &word)
+{
   size_t count_c = 0;
   if (word.empty())
     return count_c;
   // strstr locates a substring and returns a pointer to the first occurrence
   const char *pch = strstr(text.data(), word.data());
-  while (pch != nullptr) { // repeat till the end is reached
+  while (pch != nullptr)
+  { // repeat till the end is reached
     count_c++;
     pch = strstr(pch + word.size(), word.data());
   }
@@ -70,8 +76,10 @@ inline size_t count_word_with_c(const string &text, const string &word) {
 // original string ;)
 inline string replace_with_larger_string(std::string &s,
                                          const std::string &search_for,
-                                         const std::string &replace_with) {
-  if (replace_with.size() <= search_for.size()) {
+                                         const std::string &replace_with)
+{
+  if (replace_with.size() <= search_for.size())
+  {
     throw std::runtime_error("use function <replace_space_out> because size of "
                              "<replace_with> <= size of <search_for>");
   }
@@ -84,7 +92,8 @@ inline string replace_with_larger_string(std::string &s,
   char *pch = const_cast<char *>(strstr(s.data(), search_for.data()));
   char *pch_old = const_cast<char *>(s.data());
   char *pch_new = const_cast<char *>(new_text.data());
-  while (pch != nullptr) { // repeat till the end is reached
+  while (pch != nullptr)
+  { // repeat till the end is reached
     auto offset = pch - pch_old;
     strncpy(pch_new, pch_old, offset);
     pch_new += offset;
@@ -102,7 +111,8 @@ inline string replace_with_larger_string(std::string &s,
   return new_text;
 }
 
-void regex_clean(string &text) {
+void regex_clean(string &text)
+{
   { // delete Jackfruit from text
     static const auto pattern = std::regex{"Jackfruit"};
     text = regex_replace(text, pattern, "");
@@ -161,23 +171,30 @@ void regex_clean(string &text) {
 // C-style pointers than choose an alternative approach and ignore the hints.
 // Those hints are really advanced stuff and may harm more than help you, if you
 // are unsure what they mean or what to do with them!
-inline void clean_coconut(string &s) {
+inline void clean_coconut(string &s)
+{
   // TODO: write code here
-  string replace = "c";
-  string pattern = "Coconut";
-  size_t size_pattern = pattern.size();
-  size_t i = 0;
-  char *pointer = (strstr(s.data(), pattern.data()));
+  string replace = "c";                               // Set the replacement string to "c".
+  string pattern = "Coconut";                         // Set the pattern to "Coconut".
+  size_t size_pattern = pattern.size();               // Get the size of the pattern.
+  size_t i = 0;                                       // Initialize a counter variable i to 0.
+  char *pointer = (strstr(s.data(), pattern.data())); // Find the first occurrence of the pattern in the string.
+
+  // Loop through the string as long as there are more occurrences of the pattern.
   while (pointer != nullptr)
   {
+    // Loop through the characters following the pattern.
     for (i = size_pattern; i < 7 + size_pattern; i++)
     {
+      // If the character is not a digit...
       if (!isdigit(pointer[i]))
       {
+        // If we haven't reached the end of the pattern, break out of the loop.
         if (i < 3 + size_pattern)
         {
           break;
         }
+        // Otherwise, replace the pattern with the replacement string and replace the digits with spaces.
         else
         {
           strncpy(pointer, replace.data(), replace.size());
@@ -189,6 +206,7 @@ inline void clean_coconut(string &s) {
         }
       }
     }
+    // If we reached the end of the pattern and all the following characters are digits, replace the pattern and digits with spaces.
     if (i == 7 + size_pattern)
     {
       strncpy(pointer, replace.data(), replace.size());
@@ -197,15 +215,15 @@ inline void clean_coconut(string &s) {
         pointer[j] = ' ';
       }
     }
+    // Find the next occurrence of the pattern in the string.
     pointer = (strstr(pointer + size_pattern, pattern.data()));
   }
-
 }
 
-// TODO: hardcode regex to clean two or more spaces into one space: "\\s{2,}" --> " " 
+// TODO: hardcode regex to clean two or more spaces into one space: "\\s{2,}" --> " "
 // Hints (advanced):
 // - can be done in-place, just count the spaces you are "overwriting"
-//   and in the end resize the string like 
+//   and in the end resize the string like
 //   "s.resize(s.size() - amount_removed_spaces);"
 // - "memmove" allows copy destination and copy source to overlap when copying
 //   bytes
@@ -218,28 +236,36 @@ inline void clean_coconut(string &s) {
 // C-style pointers than choose an alternative approach and ignore the hints.
 // Those hints are really advanced stuff and may harm more than help you, if you
 // are unsure what they mean or what to do with them!
-inline void clean_spaces(string &s) {
+inline void clean_spaces(string &s)
+{
   // TODO: write code here
-  string pattern = "  ";
-  char *pointer = (strstr(s.data(), pattern.data()));
-  size_t spaces = 1;
+  string pattern = "  ";                              // Set the pattern to two consecutive spaces.
+  char *pointer = (strstr(s.data(), pattern.data())); // Find the first occurrence of the pattern in the string.
+  size_t spaces = 1;                                  // Initialize a counter variable spaces to 1.
+
+  // Loop through the string as long as there are more occurrences of the pattern.
   while (pointer != nullptr)
   {
+    // Loop through consecutive spaces following the pattern.
     while (pointer[spaces + 1] == ' ')
     {
       spaces++;
     }
+    // Remove the consecutive spaces and shift the remaining characters to the left.
     memmove(const_cast<char *>(s.data()) + (pointer - s.data()), pointer + spaces, strlen(pointer));
+    // Resize the string to remove the spaces at the end.
     s.resize(s.size() - spaces);
+    // Find the next occurrence of the pattern in the string.
     pointer = (strstr(pointer++, pattern.data()));
+    // Reset the counter variable spaces to 0.
     spaces = 0;
   }
-
 }
 
 // we compare the speed of the slow "regex_clean" function with this one, where
 // we use hardcoded regex expressions
-void fast_clean(string &text) {
+void fast_clean(string &text)
+{
   // "replace_space_out" is used when the replacement string is not larger
   // delete Jackfruit from text
   replace_space_out(text, "Jackfruit", "");
@@ -287,9 +313,11 @@ void fast_clean(string &text) {
 }
 /*************** end assignment ***************/
 
-int main() {
+int main()
+{
   ifstream ifs("messy_text.txt");
-  if (ifs.fail()) {
+  if (ifs.fail())
+  {
     cerr << "file not found\n";
     return 0;
   }

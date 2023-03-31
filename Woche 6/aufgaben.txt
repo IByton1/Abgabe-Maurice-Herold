@@ -1,0 +1,36 @@
+1.  Backtracking ist ein Verfahren zur systematischen Suche nach Lösungen für ein Problem, das auf einem Suchbaum basiert. 
+    Der Algorithmus trifft nacheinander Entscheidungen und aktualisiert den Zustand des Problems entsprechend. 
+    Wenn eine Entscheidung zu einer Sackgasse führt, geht der Algorithmus zurück und versucht eine andere Entscheidung. 
+    Das Verfahren wird fortgesetzt, bis eine Lösung gefunden wurde oder alle Möglichkeiten erschöpft sind. 
+    Es eignet sich gut für Probleme mit vielen Entscheidungen und begrenzten Lösungen, aber kann bei großen Problemen langsam sein
+
+2.  Um das n-Damen-Problem mit Backtracking so schnell wie möglich zu lösen, könnte man eine effiziente Implementierung verwenden, 
+    indem man zum Beispiel eine Tiefensuche mit einer geeigneten Datenstruktur durchführt, um den Zustand des Schachbretts zu speichern. 
+    Eine Optimierung besteht darin, Konflikte zwischen Damen schnell zu erkennen, indem man zusätzliche Arrays verwendet, 
+    um die Belegung von Diagonalen und Spalten zu verfolgen.  
+
+3.  Um das 15-Puzzle mit Backtracking zu lösen, kann man eine rekursive Tiefensuche verwenden, um den Lösungsweg Schritt für Schritt zu erkunden. 
+    Dabei ist es wichtig, bereits besuchte Zustände zu speichern, um wiederholte Arbeit zu vermeiden und den Suchraum zu reduzieren. 
+    Man kann auch Heuristiken verwenden, wie die Manhattan-Distanz, um die Tiefe der Suche zu begrenzen und den Algorithmus effizienter zu gestalten.
+
+4.  Effiziente Parallelisierung ist bei den meisten Divide-and-Conquer-Algorithmen nicht trivial, 
+    da die Art und Weise, wie die Probleme in kleinere Teile zerlegt und die Lösungen kombiniert werden, 
+    oft nicht direkt für parallele Ausführung optimiert ist. 
+    Bei solchen Algorithmen ist die Kommunikation und Synchronisation zwischen den parallelen Prozessen oft ein Engpass, 
+    der die Effizienz der Parallelisierung beeinträchtigt. Zudem kann die Lastverteilung ungleichmäßig sein, was dazu führt, 
+    dass einige Prozesse viel Arbeit verrichten, während andere untätig sind.
+
+5.  Effiziente Parallelisierung ist nicht trivial, weil die Probleme oft ungleichmäßig aufgeteilt sind 
+    und es ist schwierig, die Last effektiv zu verteilen und die Kommunikation zwischen den Prozessoren zu koordinieren.
+
+6.  "Decrease and Conquer" wäre ein passenderer Name, weil diese Algorithmen das Problem in jedem Schritt verkleinern, 
+    indem sie nur einen Teil des Problems weiterverfolgen, anstatt es kontinuierlich in mehrere Teile aufzuteilen.
+
+7.  Dynamische Programmierung ist eine Methode zur Lösung komplexer Probleme, indem man sie in kleinere, 
+    überlappende Teilprobleme unterteilt und die Lösungen dieser Teilprobleme speichert, um sie später bei Bedarf wiederzuverwenden.
+
+8.  Beim Top-Down-Ansatz beginnen wir mit dem ursprünglichen Problem und zerlegen es rekursiv in kleinere Teilprobleme. 
+    Hierbei wird oft Memoisierung verwendet, um bereits berechnete Lösungen zu speichern und wiederzuverwenden. 
+    Im Gegensatz dazu beginnt der Bottom-Up-Ansatz mit den kleinsten Teilproblemen und baut die Lösung schrittweise auf, 
+    indem er auf den Ergebnissen der gelösten Teilprobleme aufbaut. Der Bottom-Up-Ansatz verwendet typischerweise Tabellen, 
+    um die Lösungen der Teilprobleme zu speichern und eliminiert die Notwendigkeit der Rekursion.

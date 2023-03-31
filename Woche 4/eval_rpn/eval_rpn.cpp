@@ -35,50 +35,78 @@ using namespace std;
 //   https://www.geeksforgeeks.org/stringstream-c-applications/
 // - use a stack<int> for stacking the numbers
 
-int eval_rpn(const string &rpn_expression) {
+/*
+Initialize a stack to store the numbers.
+Initialize a stringstream with the RPN expression.
+Loop through the tokens in the RPN expression.
+If the token is an operator, pop the top two numbers from the stack, perform the operation, and push the result onto the stack.
+If the token is a number, push it onto the stack.
+The result is the only number remaining on the stack.
+*/
+
+int eval_rpn(const string &rpn_expression)
+{
+  // Creates a stack of integers to store the operands of the RPN expressions and perform arithmetic operations.
   stack<int> numbers;
+
+  // Creates a stringstream to read the RPN string.
   stringstream ss{rpn_expression};
 
-  while (ss.good()) {
+  // Iterates through each token in the RPN string.
+  while (ss.good())
+  {
+    // Gets the next token.
     string token;
     ss >> token;
 
-    if (token == "+") {
+    // If the token is an arithmetic operator (+, -, *, /), the two topmost elements are removed from the stack and the operation is performed on them. The result is pushed back onto the stack.
+    if (token == "+")
+    {
       int a = numbers.top();
       numbers.pop();
       int b = numbers.top();
       numbers.pop();
       numbers.push(a + b);
-    } else if (token == "-") {
+    }
+    else if (token == "-")
+    {
       int a = numbers.top();
       numbers.pop();
       int b = numbers.top();
       numbers.pop();
       numbers.push(b - a);
-    } else if (token == "*") {
+    }
+    else if (token == "*")
+    {
       int a = numbers.top();
       numbers.pop();
       int b = numbers.top();
       numbers.pop();
       numbers.push(a * b);
-    } else if (token == "/") {
+    }
+    else if (token == "/")
+    {
       int a = numbers.top();
       numbers.pop();
       int b = numbers.top();
       numbers.pop();
       numbers.push(b / a);
-    } else {
+    }
+    // If the token is a number, it is pushed onto the stack.
+    else
+    {
       numbers.push(stoi(token));
     }
   }
 
+  // Returns the only element left in the stack, which is the final result.
   return numbers.top();
 }
 
-
 /*************** end assignment ***************/
 
-int main() {
+int main()
+{
   {
     string rpn_expression = "5";
     assert(eval_rpn(rpn_expression) == 5);

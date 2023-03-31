@@ -1,9 +1,9 @@
-1.  Bit-Operationen können nützlich sein, um mit Mengen zu arbeiten, da sie es ermöglichen, Mengenoperationen mit Bit-Operationen auszuführen,
+1.  Bit-Operationen können nützlich sein um mit Mengen zu arbeiten, da sie es ermöglichen, Mengenoperationen mit Bit-Operationen auszuführen,
     was schneller sein kann als die Verwendung von built-in Set-Operationen.
 
 
 2.  Ein arithmetic right shift behält das Vorzeichen der Zahl, indem er die linken Bits mit Kopien des ursprünglichen linken Bits füllt. 
-    Das bedeutet, dass, wenn die Zahl negativ ist, das linkste Bit nach dem Verschieben immer 1 sein wird und die Zahl negativ bleibt.
+    Das bedeutet, dass, wenn die Zahl negativ ist, das am weitesten links stehende Bit nach dem Verschieben immer 1 sein wird und die Zahl negativ bleibt.
 
     Ein logical right shift hingegen füllt die linken Bits unabhängig vom Vorzeichen der Zahl mit Nullen auf.
 
@@ -11,7 +11,7 @@
 3.  Der Ausdruck "n & (n-1)" führt eine bitweise UND-Operation zwischen "n" und "n-1" durch. 
     Wenn "n" eine Zweierpotenz ist, besteht es aus einer einzelnen 1 gefolgt von null oder mehr 0-Bits. 
     Zum Beispiel ist 8 (1000 in binär) eine Zweierpotenz. Wenn "n-1" berechnet wird,
-    wird das rechteste 1-Bit zu 0 umgedreht und alle 0-Bits rechts werden zu 1. Zum Beispiel ist 7 (0111 in binär) gleich 8-1. 
+    wird das am weitesten rechts stehende 1-Bit zu 0 umgedreht und alle 0-Bits rechts werden zu 1. Zum Beispiel ist 7 (0111 in binär) gleich 8-1. 
     Wenn "n" und "n-1" miteinander verknüpft werden, ist das Ergebnis 0. Zum Beispiel ist 8 & 7 gleich 1000 & 0111, was 0000 ergibt.
 
 
@@ -35,4 +35,17 @@
         return reversed_n
     end function
 
-6. 
+6.  Die Partitionierungsfunktion von Quicksort ist ein wichtiger Teil des Quicksort-Algorithmus,
+    der ein Array effizient sortiert, 
+    indem es das Array um ein ausgewähltes Pivot-Element herum teilt. 
+    Dabei werden die Elemente im Array so verschoben, dass alle Elemente, 
+    die kleiner oder gleich dem Pivot sind, auf der linken Seite stehen und alle Elemente, 
+    die größer als das Pivot sind, auf der rechten Seite stehen.
+
+    Der Zusammenhang zwischen diesem Problem und der Partitionierungsfunktion von Quicksort besteht darin, 
+    dass die Partitionierungsfunktion genutzt werden kann, 
+    um das Array in zwei Teile zu teilen: ungerade Zahlen und gerade Zahlen. 
+    Statt eines Pivots, das auf der Grundlage des Wertes der Elemente ausgewählt wird, 
+    verwenden wir hier eine Bedingung: ungerade oder gerade. In diesem Fall wählen wir die Elemente, 
+    die die Bedingung erfüllen (ungerade Zahlen), und platzieren sie vor den Elementen, 
+    die die Bedingung nicht erfüllen (gerade Zahlen).

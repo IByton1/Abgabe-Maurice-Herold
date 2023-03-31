@@ -1,23 +1,34 @@
-1.  Wenn es nicht der letzte knoten ist können wir den wert des nächsten Knoten nehmen in eine Temporäre Variable speicher,
-    dann den inhalte des nächsten Knotens in den aktuellen Knoten kopieren und dann löscht man den nächsten knoten.
+1.  Die Lösung besteht darin, 
+    den Wert des zu löschenden Knotens mit dem Wert des nächsten Knotens zu überschreiben und dann den nächsten Knoten zu löschen. 
+    Dadurch wird der zu löschende Knoten effektiv aus der Liste entfernt, 
+    da er überschrieben wurde und sein Nachfolger gelöscht wurde.
 
-2.  Die grundlegende Idee ist es zwie Runner über eine Liste laufen zulassen einer davon ist langsamer der andere hingegen ist schneller somit kann man bestimmte aufgaben schneller lösen.
-    Verwenden kann man dies z.b um die mitter einer liste zu finden.
-    Ein runner läuft normal durch der andere doppelt so schnell so mit steht der langsamere in der mitte wenn der schnelle am ende ist.
+2.  Die Runner-Technik ist eine Technik, 
+    bei der zwei Zeiger (Runner) auf unterschiedlichen Positionen in der Liste gestartet werden und sich mit unterschiedlicher Geschwindigkeit durch die Liste bewegen. 
+    Diese Technik kann verwendet werden, um beispielsweise den Mittelpunkt der Liste zu finden oder um zu prüfen, 
+    ob eine Liste einen Zyklus hat.
+
+3.  Eine Möglichkeit, einen Stack für maximale Geschwindigkeit zu implementieren, 
+    besteht darin, ein Array als interne Datenstruktur zu verwenden, 
+    anstatt eine verkettete Liste zu verwenden. 
+    Der Stackpointer zeigt auf das nächste freie Feld im Array, 
+    und das Hinzufügen oder Entfernen von Elementen besteht einfach darin, 
+    den Stackpointer entsprechend zu erhöhen oder zu verringern.
+
+4.  Eine std::list kann als Queue verwendet werden, 
+    indem Elemente am Ende der Liste hinzugefügt werden und Elemente am Anfang der Liste entfernt werden. 
+    Die Funktionen push_back() und pop_front() können verwendet werden, um Elemente hinzuzufügen bzw. zu entfernen.
     
-3.  Mann kann einen Stack als Verkettete liste implementieren somit hat man eine Liste von knoten, welche das Aktuelle und einen zeiger auf das vorherige Element enthält.
-    
+5.  Ein binärer Baum ist eine Datenstruktur, bei der jeder Knoten höchstens zwei Kinder hat, 
+    während ein binärer Suchbaum eine besondere Art von binärem Baum ist, 
+    bei dem jeder Knoten einen Schlüssel hat und jeder Knoten im linken Teilbaum einen kleineren Schlüssel und jeder Knoten im rechten Teilbaum einen größeren Schlüssel hat.
 
-4.  Ein binärer Baum und binärer Suchbaum sind beides hierarchische Datenstrulturen, welche pro Knoten maximal 2 Kinder haben können.
-    Der unterschied besteht darin das ein binärer Suchbaum eine speziele anordnung hat.
-    Der linke teilbaum enthält alle Knoten die kleiner als die aktuellen sind und der rechteteilbaum alle die größer sind.
-    Beim binären Baum kommte es drauf an wie die knoten hinzugefügt werden.
+6.  Es gibt 3 verschiedene Arten:
+    Preorder: Wurzel - linker Teilbaum - rechter Teilbaum
+    Inorder: linker Teilbaum - Wurzel - rechter Teilbaum
+    Postorder: linker Teilbaum - rechter Teilbaum - Wurzel
 
-5.  Es gibt 3 Verschiedene Arten:
-    Preorder: Wurzel - Linker Teilbaum - Rechter Teilbaum
-    Inorder: Linker Teilbaum - Wurzel - Rechter Teilbaum
-    Postorder: Linker Teilbaum - Rechter Teilbaum - Wurzel
-
-6.  Trie und Radix-Baum sind baumstrukturen um Strings und Texte zu speichern.
-    In einem Trie wird in jedem knoten ein Buchstabe gespeicher in einem Radix-Baum hingegen können mehrere Buchstaben in einem Knoten speichert werden.
+7.  Trie und Radix-Baum sind Baumstrukturen, die verwendet werden, um Strings und Texte zu speichern. 
+    In einem Trie wird in jedem Knoten ein Buchstabe gespeichert, 
+    während in einem Radix-Baum mehrere Buchstaben in einem Knoten gespeichert werden können.
 

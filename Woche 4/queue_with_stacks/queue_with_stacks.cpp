@@ -22,39 +22,48 @@ using namespace std;
 // https://www.geeksforgeeks.org/priority-queue-in-cpp-stl/
 
 // simple queue implementation with two stacks
-template <typename T> class Queue {
+template <typename T>
+class Queue
+{
 private:
-// these are the only class variables you need to implement the queue.
-stack<T> enq, deq;
+  // these are the only class variables you need to implement the queue.
+  stack<T> enq, deq;
 
 public:
-// TODO: implement enqueue
-void enqueue(T x) {
-enq.push(x);
-}
+  // TODO: implement enqueue
+  void enqueue(T x)
+  {
+    enq.push(x);
+  }
 
-// TODO: implement dequeue
-T dequeue() {
-if (deq.empty()) {
-while (!enq.empty()) {
-deq.push(enq.top());
-enq.pop();
-}
-}
-T temp = deq.top();
-deq.pop();
-return temp;
-}
+  // TODO: implement dequeue
+  T dequeue()
+  {
+    if (deq.empty())
+    {
+      // If the dequeue stack is empty, move all elements from the enqueue stack to the dequeue stack.
+      while (!enq.empty())
+      {
+        deq.push(enq.top());
+        enq.pop();
+      }
+    }
+    // Pop the top element from the dequeue stack and return it.
+    T temp = deq.top();
+    deq.pop();
+    return temp;
+  }
 
-// convenience functions
-// TODO: implement size
-size_t size() { return enq.size() + deq.size(); }
-// TODO: implement empty
-bool empty() { return enq.empty() && deq.empty(); }
+  // convenience functions
+  // TODO: implement size
+  size_t size() { return enq.size() + deq.size(); }
+  // TODO: implement empty
+  bool empty() { return enq.empty() && deq.empty(); }
 };
 /*************** end assignment ***************/
 
-int main() {
+int main()
+{
   {
     Queue<int> my_queue;
     assert(my_queue.size() == 0);
@@ -76,23 +85,28 @@ int main() {
   {
     int n = 1000000;
     Queue<int> my_queue;
-    for (int i = 0; i < n; ++i) {
+    for (int i = 0; i < n; ++i)
+    {
       my_queue.enqueue(i);
     }
     assert(my_queue.size() == size_t(n));
     assert(!my_queue.empty());
-    for (int i = 0; i < n / 2; ++i) {
+    for (int i = 0; i < n / 2; ++i)
+    {
       my_queue.dequeue();
     }
     assert(my_queue.size() == size_t(n / 2));
     assert(my_queue.dequeue() == n / 2);
-    for (int i = 0; i < 10; ++i) {
+    for (int i = 0; i < 10; ++i)
+    {
       my_queue.enqueue(i);
     }
-    for (int i = 0; i < n / 2 - 1; ++i) {
+    for (int i = 0; i < n / 2 - 1; ++i)
+    {
       assert(my_queue.dequeue() == n / 2 + 1 + i);
     }
-    for (int i = 0; i < 10; ++i) {
+    for (int i = 0; i < 10; ++i)
+    {
       assert(my_queue.dequeue() == i);
     }
     assert(my_queue.size() == 0);

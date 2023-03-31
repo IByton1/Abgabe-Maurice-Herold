@@ -57,7 +57,7 @@ inline uint32_t reverse_simple(uint32_t num)
 // TODO: Use the lookup table at line 18 to reverse the bits of an unsigned 32-bit integer.
 inline uint32_t reverse_with_lookup(uint32_t num)
 {
-  uint32_t result = 0; 
+  uint32_t result = 0;
 
   // isolate the first byte of the input number using bitwise AND with 0xff
   // lookup the reverse value of the first byte using the lookup table and shift it to the leftmost position

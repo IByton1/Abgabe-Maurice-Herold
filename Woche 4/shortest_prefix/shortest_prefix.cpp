@@ -11,9 +11,11 @@
 using namespace std;
 
 // this is a simple implementation of a trie
-class Trie {
+class Trie
+{
 private:
-  struct Trie_Node {
+  struct Trie_Node
+  {
     // indicates whether the string corresponding to the path from the root is a
     // string
     bool is_string = false;
@@ -24,18 +26,24 @@ private:
 
 public:
   // insert a string into the trie
-  bool insert(const string &s) {
+  bool insert(const string &s)
+  {
     auto *p = root.get();
-    for (char c : s) {
-      if (p->nodes.find(c) == p->nodes.cend()) {
+    for (char c : s)
+    {
+      if (p->nodes.find(c) == p->nodes.cend())
+      {
         p->nodes[c] = unique_ptr<Trie_Node>(new Trie_Node());
       }
       p = p->nodes[c].get(); // get pointer of the next node in path
     }
     // s already existed in this trie
-    if (p->is_string) {
+    if (p->is_string)
+    {
       return false;
-    } else {               // p->is_string == false.
+    }
+    else
+    {                      // p->is_string == false.
       p->is_string = true; // inserts s into this trie
       return true;
     }
@@ -79,38 +87,66 @@ public:
 // - You need no recursion, no stack. Look at the lines 29 - 34 to get an idea
 //   of how to move along a path in a trie.
 
-string Trie::shortest_prefix(const string &s) {
-    auto *p = root.get();
-    string prefix = "";
-    for (char c : s) {
-        if (p->nodes.find(c) != p->nodes.cend()) {
-            p = p->nodes[c].get();
-            prefix += c;
-        } else {
-            if(prefix == ""){
-                return prefix+s[0];
-            }
-            else if(prefix == s){
-                return "";
-            }
-            else{
-                return prefix+s[prefix.length()];
-            }
-        }
+/*
+Initialize a pointer to the root node of the Trie.
+Initialize a string to store the prefix.
+Traverse the characters of the input string.
+If the current character is found in the Trie, move to the next node and add the character to the prefix.
+If the current character is not found in the Trie, construct the shortest prefix that is not a prefix of the input string and return it:
+If the prefix is empty, return the first character of the input string as the prefix.
+If the prefix is equal to the input string, return an empty string.
+If the prefix is not equal to the input string, return the concatenation of the prefix and the character that follows the prefix in the input string.
+If the prefix is equal to the input string, return an empty string.
+Otherwise, return the concatenation of the prefix and the first character of the input string.
+*/
+
+string Trie::shortest_prefix(const string &s)
+{
+  auto *p = root.get(); // Initialize a pointer to the root node of the Trie.
+  string prefix = "";   // Initialize a string to store the prefix.
+
+  for (char c : s)
+  { // Traverse the characters of the input string.
+    if (p->nodes.find(c) != p->nodes.cend())
+    { // If the current character is found in the Trie, move to the next node and add the character to the prefix.
+      p = p->nodes[c].get();
+      prefix += c;
     }
-    if(prefix == s){
+    else
+    { // If the current character is not found in the Trie, construct the shortest prefix that is not a prefix of the input string and return it.
+      if (prefix == "")
+      { // If the prefix is empty, return the first character of the input string as the prefix.
+        return prefix + s[0];
+      }
+      else if (prefix == s)
+      { // If the prefix is equal to the input string, return an empty string.
         return "";
+      }
+      else
+      { // If the prefix is not equal to the input string, return the concatenation of the prefix and the character that follows the prefix in the input string.
+        return prefix + s[prefix.length()];
+      }
     }
-    return prefix+s[0];
+  }
+
+  if (prefix == s)
+  { // If the prefix is equal to the input string, return an empty string.
+    return "";
+  }
+
+  // Otherwise, return the concatenation of the prefix and the first character of the input string.
+  return prefix + s[0];
 }
 
 /*************** end assignment ***************/
 
-int main() {
+int main()
+{
   {
     Trie trie;
     // fill trie with words
-    for (const string &s : {"dog", "be", "cut"}) {
+    for (const string &s : {"dog", "be", "cut"})
+    {
       trie.insert(s);
     }
     assert(trie.shortest_prefix("cat") == "ca");
@@ -132,7 +168,8 @@ int main() {
     Trie trie;
     // fill trie with words
     for (const string &s : {"romane", "romanus", "romulus", "rubens", "ruber",
-                            "rubicon", "rubicundus"}) {
+                            "rubicon", "rubicundus"})
+    {
       trie.insert(s);
     }
     assert(trie.shortest_prefix("romane") == "");

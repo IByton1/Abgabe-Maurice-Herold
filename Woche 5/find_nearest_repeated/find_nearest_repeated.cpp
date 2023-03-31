@@ -33,46 +33,65 @@ using namespace std;
 // Read here how to use unordered_map in C++.
 // https://www.geeksforgeeks.org/unordered_map-in-cpp-stl/
 
-
-
 // struct for returning the closest pair indices
-struct Nearest_Entries {
+struct Nearest_Entries
+{
   size_t index_1;
   size_t index_2;
 
   // for testing your implementation (you don't need this)
-  bool operator==(const Nearest_Entries &rhs) const {
+  bool operator==(const Nearest_Entries &rhs) const
+  {
     return index_1 == rhs.index_1 && index_2 == rhs.index_2;
   }
   bool operator!=(const Nearest_Entries &rhs) const { return !(rhs == *this); }
 };
 
-Nearest_Entries find_nearest_repeated(const vector<string> &words) {
+// This function takes a vector of strings as input and returns the indices of the closest repeated words in the vector
+Nearest_Entries find_nearest_repeated(const vector<string> &words)
+{
+  // Create a Nearest_Entries struct with default values of {0, 0}
   Nearest_Entries nearest_entries{0, 0};
 
-  // TODO: write code here
+  // Create an unordered map to keep track of the last index at which a word was seen
   unordered_map<string, size_t> last_index_map;
+
+  // Initialize closest_distance to the maximum value of size_t
   size_t closest_distance = numeric_limits<size_t>::max();
 
-  for (size_t i = 0; i < words.size(); ++i) {
-    const string& word = words[i];
+  // Loop through each word in the input vector
+  for (size_t i = 0; i < words.size(); ++i)
+  {
+    // Get a reference to the current word
+    const string &word = words[i];
+
+    // Check if the current word has been seen before
     auto it = last_index_map.find(word);
-    if (it != last_index_map.end()) {
+    if (it != last_index_map.end())
+    {
+      // If the word has been seen before, calculate the distance between the current index and the previous occurrence of the word
       size_t distance = i - it->second;
-      if (distance < closest_distance) {
+
+      // If the current distance is smaller than the current closest distance, update the closest distance and the nearest entries
+      if (distance < closest_distance)
+      {
         closest_distance = distance;
         nearest_entries = {it->second, i};
       }
     }
+
+    // Update the last index at which the current word was seen
     last_index_map[word] = i;
   }
 
+  // Return the indices of the closest repeated words, or {0,0} if no repeated words were found
   return nearest_entries;
 }
 
 /*************** end assignment ***************/
 
-int main() {
+int main()
+{
   {
     vector<string> words;
     Nearest_Entries nearest_entries{0, 0};
@@ -95,7 +114,7 @@ int main() {
   }
   {
     vector<string> words{"cat", "dog", "bird", "cow",
-                         "cat", "dog", "cow",  "cat"};
+                         "cat", "dog", "cow", "cat"};
     Nearest_Entries nearest_entries{3, 6}; // cow appears before cat
     assert(find_nearest_repeated(words) == nearest_entries);
   }
@@ -105,9 +124,9 @@ int main() {
     assert(find_nearest_repeated(words) == nearest_entries);
   }
   {
-    vector<string> words{"all",   "work", "and", "no",     "play",
-                         "makes", "for",  "no",  "work",   "no",
-                         "fun",   "and",  "no",  "results"};
+    vector<string> words{"all", "work", "and", "no", "play",
+                         "makes", "for", "no", "work", "no",
+                         "fun", "and", "no", "results"};
     Nearest_Entries nearest_entries{7, 9};
     assert(find_nearest_repeated(words) == nearest_entries);
   }

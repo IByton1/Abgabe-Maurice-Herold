@@ -1,20 +1,30 @@
-1.  1. Variable result mit 0 Initialisieren
-    2. Durchlaufe mit einer Schleife alle Buchstaben des Strings
-    3. Für jeden Buchstaben wird result mit 10 multipliziert und der wert des Buchstabens addirt
-    4. Am ende der schleife hat man sein ergebnis in result
+1.  1. Variable "result" mit 0 initialisieren.
+    2. Durchlaufe mit einer Schleife alle Buchstaben des Strings.
+    3. Für jeden Buchstaben wird "result" mit 10 multipliziert und der Wert des Buchstabens addiert.
+    4. Am Ende der Schleife hat man das Ergebnis in "result".
 
-2.  1. Leere zeischenfolge names Result
-    2. Schleife die solnage läuft wie die Zahl größer als 0 ist
-    3. Zahl modulo 10 rechnen und rest mit ASCII-Wert am anfang von result einfügen
-    4. Wenn die schleife fertig ist und result lehr ASCII-Wer für 0 einfügen
-    5. In result steht das ergebnis
+2.  1. Leere Zeichenfolge "result" initialisieren.
+    2. Schleife, die solange läuft, wie die Zahl größer als 0 ist.
+    3. Die Zahl modulo 10 rechnen und den Rest mit dem ASCII-Wert am Anfang von "result" einfügen.
+    4. Wenn die Schleife fertig ist und "result" leer ist, ASCII-Wert für 0 einfügen.
+    5. In "result" steht das Ergebnis.
 
-3.  ASCII ist eine 7-Bit-Codierung, die 128 Zeichen enthält, während Extended ASCII eine 8-Bit-Codierung ist, die bis zu 256 Zeichen enthält.
-    UTF-8 ist eine variable Codierung, die für die Darstellung von Unicode-Zeichen verwendet wird und einzelne Byte-Folgen für ASCII-Zeichen und mehrere Byte-Folgen für nicht-ASCII-Zeichen verwendet.
-    UTF-16 ist auch eine variable Codierung, die ein oder zwei 16-Bit-Wörter verwendet, um alle Zeichen zu speichern.
-    UTF-32 ist eine feste Codierung, die genau 4 Bytes für alle Zeichen verwendet, was es effektiv für schnelle Verarbeitung und einfache Indexierung macht
+3.  ASCII ist eine 7-Bit-Codierung, die 128 Zeichen enthält,
+    während Extended ASCII eine 8-Bit-Codierung ist, 
+    die bis zu 256 Zeichen enthält. UTF-8 ist eine variable Codierung, 
+    die zur Darstellung von Unicode-Zeichen verwendet wird und einzelne Byte-Folgen für ASCII-Zeichen und mehrere Byte-Folgen für nicht-ASCII-Zeichen verwendet. 
+    UTF-16 ist auch eine variable Codierung, die ein oder zwei 16-Bit-Wörter verwendet, um alle Zeichen zu speichern. 
+    UTF-32 ist eine feste Codierung, die genau 4 Bytes für alle Zeichen verwendet, was sie effektiv für schnelle Verarbeitung und einfache Indexierung macht.
 
-4.  hardcoded regex expressions sind oft schneller da si bereits bei der Kompilierung festgelegt werden und somit analyse und Kompilierungszeiten entfallen.
-    Außerdem können sie statisch optimiert werden was leistung einsparen kann.
+4.  Eine Möglichkeit, Strings schnell zu ändern, 
+    ist die Verwendung von StringBuilder oder StringBuffer anstelle von einfachen String-Operationen wie + oder +=. 
+    Diese Klassen bieten effiziente Methoden, um Strings zu verändern, insbesondere wenn viele Änderungen vorgenommen werden.
 
-5.  
+5.  Hardcoded Regex-Ausdrücke sind oft schneller, 
+    weil sie während der Kompilierung der Anwendung in einen effizienten Code übersetzt werden. 
+    Dieser Code wird direkt ausgeführt, wenn die Anwendung läuft, was schneller ist als das Parsen und Kompilieren des Regex-Ausdrucks zur Laufzeit.
+
+6.  Run-Length-Encoding (RLE) ist eine einfache Methode zur Kompression von Strings, 
+    die für Strings mit vielen aufeinanderfolgenden gleichen Zeichen gut geeignet ist. 
+    Allerdings ist RLE für viele andere Arten von Strings nicht effektiv und es gibt fortschrittlichere Kompressionsmethoden wie gzip oder deflate, 
+    die in der Regel eine bessere Kompression erzielen.

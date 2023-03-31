@@ -1,0 +1,118 @@
+Erstellen Sie einen Quellknoten 's' und einen Senkenknoten 't'.
+Verbinden Sie den Quellknoten 's' mit jedem Arbeiter mit einer Kapazität von 'ci' und Kosten von 0.
+Verbinden Sie jede Aufgabe mit dem Senkenknoten 't' mit einer Kapazität von 1 und Kosten von 0.
+Verbinden Sie jeden Arbeiter 'wi' mit jeder seiner qualifizierten Aufgaben 'tj' mit einer Kapazität von 1 und Kosten gleich den Kosten 'wj' der Aufgabe.
+Führen Sie den Black-Box-Maximal-Fluss-Algorithmus im erstellten Flussnetzwerk aus, mit dem Quellknoten 's' und dem Senkenknoten 't'.
+Die Flusswerte auf den Kanten im Flussnetzwerk stellen die optimale Zuweisung von Arbeitern zu Aufgaben dar.
+
+function n_to_m_assignment(W, T, G):
+    create an empty flow network F
+
+    create a source node s
+    create a sink node t
+
+    # Connect source node to workers with their capacities
+    for each worker wi in W:
+        add_edge(F, s, wi, ci, 0)
+
+    # Connect tasks to the sink node with capacity 1 and cost 0
+    for each task tj in T:
+        add_edge(F, tj, t, 1, 0)
+
+    # Connect workers to their qualified tasks with capacity 1 and task cost
+    for each edge (wi, tj) in G:
+        add_edge(F, wi, tj, 1, wj)
+
+    # Run the black-box Maximum-Flow algorithm on the flow network
+    max_flow = maximum_flow(F, s, t)
+
+    # Extract the optimal assignment of workers to tasks from the flow values
+    optimal_assignment = extract_assignment(max_flow)
+
+    return optimal_assignment
+
+
+
+ Bei dem MinCut-Problem geht es darum, die minimale Menge von Kanten zu finden, die entfernt werden müssen, 
+ um den Fluss zwischen zwei spezifischen Knoten, normalerweise als Quelle (s) und Senke (t) bezeichnet, 
+ zu unterbrechen. Das MinCut-Problem ist eng mit dem Maximal-Fluss-Problem verbunden und kann mithilfe des Max-Flow-Min-Cut-Theorems gelöst werden.
+
+genau einem minimalen Schnitt:
+
+Knoten: A, B, C, D, E
+Kanten: (A, B), (A, C), (B, D), (C, D), (B, E), (C, E), (D, E)
+
+    A---1---B
+    |       | \
+    1       2  1
+    |       | /
+    C---1---D---1---E
+
+drei verschiedenen minimalen Schnitten:
+
+Knoten: A, B, C, D, E
+Kanten: (A, B), (A, C), (B, C), (B, D), (C, D), (D, E), (C, E)
+
+    A---1---B
+     \     / \
+      1   1   1
+       \ /     \
+        C---1---D---1---E
+
+
+MinCut 1: {(A, B), (A, C)} mit einem Gewicht von 2.
+MinCut 2: {(B, D), (C, D)} mit einem Gewicht von 2.
+MinCut 3: {(D, E), (C, E)} mit einem Gewicht von 2.
+
+
+Das Matching-Problem besteht darin, eine Teilmenge von Kanten in einem bipartiten Graphen auszuwählen, 
+so dass keine zwei Kanten denselben Knoten teilen. Ein perfektes Matching ist ein Matching, 
+bei dem jeder Knoten in dem Graphen an genau einer Kante beteiligt ist.
+
+zwei verschiedenen perfekten Matchings:
+
+Knoten: A, B, C, D, E, F
+A, B, C sind Teilmenge U
+D, E, F sind Teilmenge V
+
+Kanten: (A, D), (A, E), (B, E), (B, F), (C, F), (C, D)
+
+  A---D
+  |\  |
+  | \ |
+  |  \| 
+  B---E
+  |\  |
+  | \ |
+  |  \|
+  C---F
+
+
+Perfektes Matching 1: {(A, D), (B, E), (C, F)}
+
+Perfektes Matching 2: {(A, E), (B, F), (C, D)}
+
+kein perfektes Matching möglich (aber jeder Knoten hat mindestens einen möglichen Partner):
+
+
+Knoten: A, B, C, D, E, F
+A, B, C sind Teilmenge U
+D, E, F sind Teilmenge V
+
+Kanten: (A, D), (A, E), (B, E), (B, F), (C, F)
+
+  A---D
+  |\  |
+  | \ |
+  |  \|
+  B---E
+  |   |
+  |   |
+  |   |
+  C---F
+
+In diesem Beispiel ist kein perfektes Matching möglich, da bei jedem Matching immer ein Knoten ohne Partner bleibt.
+
+
+
+

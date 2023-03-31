@@ -1,6 +1,0 @@
-1.  Eine Änderung, die die Länge des Programms signifikant verringerte, war die Verwendung einer ternären Bedingung    
-    anstelle einer if-else-Anweisung in der Schleife, um die Richtung des nächsten Zugs des Aufzugs zu bestimmen. 
-    Dies spart etwa 46 Zeichen. 
-
-
-    Die Änderung, die die Länge des Programms signifikant verringert hat, war die Verwendung einer ternären Bedingung, um zu entscheiden, ob der Agent warten oder blockieren soll. Der Code verwendet auch einen Vektor, um die Mindeststärke für jede Tür zu speichern, anstatt eine Schleife zu verwenden, um die Informationen bei jeder Eingabe zu aktualisieren.

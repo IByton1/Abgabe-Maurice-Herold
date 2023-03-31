@@ -8,10 +8,10 @@
     O(n^2): Bubble-Sort.
 
 3.  1. Das Problem verstehen: Sicher sein, dass man das Problem verstanden hat. Wichtige Sachen notieren und wenn nötig nachfragen.
-    2. Ein Plan entwickeln: Zuerst überlegen wie man an das Problem ran geht und welcher ansatz der besste ist.
+    2. Ein Plan entwickeln: Zuerst überlegen wie man an das Problem ran geht und welcher Ansatz der beste ist.
     3. Den Code implementieren: Den Code Schritt für Schritt für das Problem schreiben, um sicher zu sein, dass die Zwischenergebnisse richtig sind.
     4. Den Code testen: Teste, ob dein Code richtig funktioniert und ändere Dinge, die nicht gehen.
-    5. Optimieren: Optimiere deine Lösung soweit es geht (unnötige Schleifen, bessere Algorithmen).
+    5. Optimieren: Optimiere deine Lösung soweit es geht (unnötige Schleifen entfernen, bessere Algorithmen).
     6. Dokumentiere deine Lösung mit Kommentaren im Code.
 
 4.  1. Durchlaufe die Liste der Aktienpreise und behalte den bisherigen Minimalpreis und den bisherigen maximalen Gewinn im Auge.

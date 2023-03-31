@@ -8,7 +8,8 @@
 
 using namespace std;
 
-struct Node {
+struct Node
+{
   uint64_t data;
   Node *next;
 };
@@ -37,11 +38,24 @@ struct Node {
 // that's ok. Use extra memory and you're done with a few lines
 // of code ;).
 
-bool is_palindrom(Node *node) {
+/*
+Initialize two pointers, slow and fast, both starting at the head of the list.
+Move the slow pointer one step at a time and the fast pointer two steps at a time until the fast pointer reaches the end of the list or the second-to-last node. This finds the middle node of the list.
+Initialize a pointer to the head of the copy of the first half of the list.
+Traverse the original list until the slow pointer is reached. Create a new node with the same data as the current node and add it to the front of the copy list.
+Initialize a pointer to the middle or the second half of the list. If the list has an odd number of nodes, move the second pointer one step forward.
+Traverse both the copy and the second half of the list until the end is reached or a pair of nodes with different data is found. If a pair of nodes with different data is found, return false.
+Traverse the copy of the first half of the list and delete each node.
+If no pair of nodes with different data is found, the list is a palindrome. Return true.
+*/
+
+bool is_palindrom(Node *node)
+{
   // Find the middle of the list
   Node *slow = node;
   Node *fast = node;
-  while (fast && fast->next) {
+  while (fast && fast->next)
+  {
     slow = slow->next;
     fast = fast->next->next;
   }
@@ -49,7 +63,8 @@ bool is_palindrom(Node *node) {
   // Create a copy of the first half of the list
   Node *first = nullptr;
   Node *curr = node;
-  while (curr != slow) {
+  while (curr != slow)
+  {
     Node *copy = new Node{curr->data, first};
     first = copy;
     curr = curr->next;
@@ -57,11 +72,14 @@ bool is_palindrom(Node *node) {
 
   // Check if the first and second half of the list are equal
   Node *second = slow;
-  if (fast) {
+  if (fast)
+  {
     second = second->next;
   }
-  while (first && second) {
-    if (first->data != second->data) {
+  while (first && second)
+  {
+    if (first->data != second->data)
+    {
       return false;
     }
     first = first->next;
@@ -69,7 +87,8 @@ bool is_palindrom(Node *node) {
   }
 
   // Delete the copy of the first half of the list
-  while (first) {
+  while (first)
+  {
     Node *temp = first;
     first = first->next;
     delete temp;
@@ -80,7 +99,8 @@ bool is_palindrom(Node *node) {
 
 /*************** end assignment ***************/
 
-int main() {
+int main()
+{
   // test correctness
   {
     Node *head = nullptr; // empty list is also a palindrom
@@ -168,11 +188,13 @@ int main() {
     // create a list
     Node *head = new Node{1, nullptr};
     Node *current = head;
-    for (uint64_t i = 2; i <= 10; ++i) {
+    for (uint64_t i = 2; i <= 10; ++i)
+    {
       current->next = new Node{i, nullptr};
       current = current->next;
     }
-    for (uint64_t i = 10; i > 0; --i) {
+    for (uint64_t i = 10; i > 0; --i)
+    {
       current->next = new Node{i, nullptr};
       current = current->next;
     }
@@ -184,7 +206,8 @@ int main() {
     assert(is_palindrom(head));
     // delete list
     current = head;
-    while (current) {
+    while (current)
+    {
       Node *tmp = current;
       current = current->next;
       delete tmp;
@@ -194,13 +217,15 @@ int main() {
     // create a list
     Node *head = new Node{1, nullptr};
     Node *current = head;
-    for (uint64_t i = 2; i <= 10; ++i) {
+    for (uint64_t i = 2; i <= 10; ++i)
+    {
       current->next = new Node{i, nullptr};
       current = current->next;
     }
     current->next = new Node{11, nullptr};
     current = current->next;
-    for (uint64_t i = 10; i > 0; --i) {
+    for (uint64_t i = 10; i > 0; --i)
+    {
       current->next = new Node{i, nullptr};
       current = current->next;
     }
@@ -212,7 +237,8 @@ int main() {
     assert(is_palindrom(head));
     // delete list
     current = head;
-    while (current) {
+    while (current)
+    {
       Node *tmp = current;
       current = current->next;
       delete tmp;

@@ -28,38 +28,44 @@ using namespace std;
 // Input: < 4, 1, 2, 3, 0, 1, 0 >
 // Output: 0
 
-
-size_t min_steps_beyond_last_index(const vector<size_t> &A) {
-  //size of the vector
+size_t min_steps_beyond_last_index(const vector<size_t> &A)
+{
+  // size of the vector
   size_t n = A.size();
-  //if size is 0 or the firt element is 0 its impossible 
-  if (n == 0 || A[0] == 0) {
+  // if size is 0 or the firt element is 0 its impossible
+  if (n == 0 || A[0] == 0)
+  {
     return 0;
   }
-  //if size is 1 need is 1 step
-  else if(n == 1){
+  // if size is 1 need is 1 step
+  else if (n == 1)
+  {
     return 1;
   }
   size_t max_reach = A[0];
   size_t steps = A[0];
   size_t jumps = 1;
-  //Start traversing vector
-  for (size_t i = 1; i < n; i++) {
-    //Check if value at current index guarantees jump to end
-    if (A[i] >= n - i) {
-       return jumps + 1;
+  // Start traversing vector
+  for (size_t i = 1; i < n; i++)
+  {
+    // Check if value at current index guarantees jump to end
+    if (A[i] >= n - i)
+    {
+      return jumps + 1;
     }
-    //update max_reach
+    // update max_reach
     max_reach = max(max_reach, i + A[i]);
-    //we needed 1 step to get to the current index
+    // we needed 1 step to get to the current index
     steps--;
-    //check if steps left
-    if(steps == 0) {
-      //need to jump
+    // check if steps left
+    if (steps == 0)
+    {
+      // need to jump
       jumps++;
       // Check if the current index/position or lesser index
       // is the maximum reach point from the previous indexes
-      if(i >= max_reach){
+      if (i >= max_reach)
+      {
         return 0;
       }
       // re-initialize the steps to the amount
@@ -71,13 +77,10 @@ size_t min_steps_beyond_last_index(const vector<size_t> &A) {
   return 0;
 }
 
-
-
-
-
 /*************** end assignment ***************/
 
-int main() {
+int main()
+{
   {
     vector<size_t> v;
     assert(min_steps_beyond_last_index(v) == 0);

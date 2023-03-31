@@ -9,6 +9,7 @@
 #include <queue>
 #include <sstream>
 #include <string>
+#include <algorithm>
 
 using namespace std;
 
@@ -34,32 +35,34 @@ vector<Star> find_k_brightest_stars(ifstream &ifs, const size_t k)
 {
   vector<Star> result;
 
+  // Create a lambda comparator function to compare stars based on their magnitude
   auto comparator = [](const Star &a, const Star &b)
   {
     return a.vmag < b.vmag;
   };
   priority_queue<Star, vector<Star>, decltype(comparator)> min_heap(comparator);
 
+  // Read the text file line by line and extract star information
   string line;
   while (getline(ifs, line))
   {
+    // Ignore empty lines or lines starting with '#'
     if (line.empty() || line[0] == '#')
     {
       continue;
     }
 
+    // Extract star name and remove trailing spaces
     Star star;
     star.name = line.substr(0, 18);
-
-    // remove trailing spaces from star name
     size_t endpos = star.name.find_last_not_of(" ");
     if (endpos != string::npos)
     {
       star.name = star.name.substr(0, endpos + 1);
     }
 
+    // Extract star vmag and add it to the min-heap if it is among the k-brightest
     star.vmag = stod(line.substr(64, 6));
-
     if (min_heap.size() < k)
     {
       min_heap.push(star);
@@ -71,14 +74,17 @@ vector<Star> find_k_brightest_stars(ifstream &ifs, const size_t k)
     }
   }
 
+  // Copy the k-brightest stars from the min-heap into the result vector
   while (!min_heap.empty())
   {
     result.push_back(min_heap.top());
     min_heap.pop();
   }
 
+  // Reverse the order of the stars in the result vector to get them in descending order of magnitude
   reverse(result.begin(), result.end());
 
+  // Return the vector of k-brightest stars
   return result;
 }
 
