@@ -1,4 +1,6 @@
-1.
+1.  3. Beispiel: O(n^2)
+    5. Beispiel: O(a * b)
+    12.Beispiel: O(b * log(b) + a * log(b))
 
 
 2.  O(1): Zugriff auf ein Element in einem Array mit einem Index.

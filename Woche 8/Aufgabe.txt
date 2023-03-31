@@ -1,10 +1,10 @@
 1.  Um den Kürzesten weg zwischen 2 Kanten zufinden kann man die Breitensuche verwenden.
     Diese geht jeden Knoten von einem Startknoten bis zum Zielknoten ab und berechnent den Kürzesten weg.
-    Das alle Kanten 1 lang sind hat man somit den Kürzesten weg.
+    Da alle Kanten 1 lang sind hat man somit den Kürzesten weg.
 
 2.  Dafür kann man den Dijkstra-Algorithmus verwenden.
-    Da diese Algorithmus nicht jede Kante des Grapghen durchlaufen muss kann er schneller als viele andere Algorithmen sein.
+    Da diese Algorithmus nicht jede Kante des Grapghen durchlaufen muss kann er schneller als viele andere Algorithmen arbeiten.
 
-3.  Der Dijkstra's Algorithm funktioniert unter der Annahme, dass der kürzeste weg zu einem Knoten durch betrachtung aller Benachbarten Knoten mit dem geringsten Kantengewicht erreicht wird.
-    Dies geht jedoch nicht wenn es negative Kantengewicht giebt da durch Hinzufügen eines negativen Kantengewichts ein weg möglicherweise kürzer wird als der bisher bekannte kürzeste Weg.
+3.  Der Dijkstra's Algorithm funktioniert unter der Annahme, dass der kürzeste weg zu einem Knoten durch Betrachtung aller Benachbarten Knoten mit dem geringsten Kantengewicht erreicht wird.
+    Dies geht jedoch nicht wenn es negative Kantengewicht gibt da durch Hinzufügen eines negativen Kantengewichts ein weg möglicherweise kürzer wird als der bisher bekannte kürzeste Weg.
     
